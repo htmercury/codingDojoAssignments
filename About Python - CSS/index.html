@@ -4,17 +4,16 @@
     <meta charset="utf-8">
     <title>About Python</title>
     <meta name="description" content="Webpage with information on python created mainly in CSS based on given image." >
-    <link rel="stylesheet" href="my_css_file.css">
-    <script src="my_javascript_library.js"></script>
-    <script src="another_javascript_file.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="header">
         <img src="python.png" alt="python logo">
+        <div class="filler"></div>
         <div class="settings">
-            <p>Text Size: <a href="#">Normal</a> | <a href="#">Large</a></p>
+            <p>Text Size: <a href="#">Normal</a> <span>|</span> <a href="#">Large</a></p>
             <div class="search">
-                <input type="text" value="search">
+                <input type="text" placeholder="Search">
                 <button type="button">GO</button>
             </div>
         </div>
@@ -69,7 +68,7 @@
                 step to get on your way writing programs 
                 with Python!
             </p>
-            <ul>
+            <ul class="resources">
                 <li><a href="#">Beginner's Guide, 
                     Programmers</a>
                 </li>
@@ -89,7 +88,7 @@
                 Both Python's standard library and the community-
                 contributed modules allow for endless possibilities.
             </p>
-            <ul>
+            <ul class="resources">
                 <li><a href="#">Web and Internet Development</a></li>
                 <li><a href="#">Database Access</a></li>
                 <li><a href="#">Desktop GUIs</a></li>
@@ -99,7 +98,7 @@
         </div>
     </div>
     <div class="footer">
-        <div class="contact">
+        <div>
             <a href="#">Help and General Contact</a>
             <a href="#">Diversity Initiatives</a>
             <a href="#">Submit Website Bugs</a>
