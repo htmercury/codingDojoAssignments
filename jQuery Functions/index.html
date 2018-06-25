@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>jQuery Functions</title>
+    <meta name="description" content="A basic webpage that uses jQuery functions." >
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+</head>
+<body>
+    <div class="fluid-container">
+        <div class="row" id="hide">
+            <div class="col-3">
+                <button type="button" class="btn btn-secondary">Hide</button>
+            </div>
+            <div class="col-9">
+                <h2>Hide</h2>
+                <p>Click the button to hide this paragraph</p>
+            </div>
+        </div>
+        <hr>
+        <div class="row" id="show">
+            <div class="col-3">
+                <button type="button" class="btn btn-secondary">Show</button>
+            </div>
+            <div class="col-9">
+                <h2>Show</h2>
+                <p>Click the button to show a hidden paragraph</p>
+                <p class="hidden">hidden</p>
+            </div>
+        </div>
+        <hr>
+        <div class="row" id="toggle">
+            <div class="col-3">
+                <button type="button" class="btn btn-secondary">Toggle</button>
+            </div>
+            <div class="col-9">
+                <h2>Toggle</h2>
+                <p>Click the button to toggle a hidden image</p>
+                <img src="./images/github.png" alt="github logo" class="hidden">
+            </div>
+        </div>
+        <hr>
+        <div class="row" id="slideDown">
+            <div class="col-3">
+                <button type="button" class="btn btn-secondary">SlideDown</button>
+            </div>
+            <div class="col-9">
+                <h2>SlideDown</h2>
+                <p>Click the button to SlideDown a hidden image</p>
+                <img src="./images/ninja.png" alt="ninja" class="hidden">
+            </div>
+        </div>
+        <hr>
+        <div class="row" id="slideUp">
+            <div class="col-3">
+                <button type="button" class="btn btn-secondary">SlideUp</button>
+            </div>
+            <div class="col-9">
+                <h2>SlideUp</h2>
+                <p>Click the button to SlideUp an image</p>
+                <img src="./images/ninja.png" alt="ninja">
+            </div>
+        </div>
+        <hr>
+        <div class="row" id="slideToggle">
+            <div class="col-3">
+                <button type="button" class="btn btn-secondary">SlideToggle</button>
+            </div>
+            <div class="col-9">
+                <h2>SlideToggle</h2>
+                <p>Click the button to SlideToggle a hidden image</p>
+                <img src="./images/ninja.png" alt="ninja" class="hidden">
+            </div>
+        </div>
+        <hr>
+        <div class="row" id="fadeIn">
+            <div class="col-3">
+                <button type="button" class="btn btn-secondary">FadeIn</button>
+            </div>
+            <div class="col-9">
+                <h2>FadeIn</h2>
+                <p>Click the button to FadeIn a hidden paragraph</p>
+                <p class="hidden">hidden</p>
+            </div>
+        </div>
+        <hr>
+        <div class="row" id="fadeOut">
+            <div class="col-3">
+                <button type="button" class="btn btn-secondary">FadeOut</button>
+            </div>
+            <div class="col-9">
+                <h2>FadeOut</h2>
+                <p>Click the button to FadeOut this paragraph</p>
+            </div>
+        </div>
+        <hr>
+        <div class="row" id="addClass">
+            <div class="col-3">
+                <button type="button" class="btn btn-secondary">AddClass</button>
+            </div>
+            <div class="col-9">
+                <h2>AddClass</h2>
+                <p>Click the button to add class 'red' to this paragraph</p>
+            </div>
+        </div>
+        <hr>
+        <div class="row" id="before">
+            <div class="col-3">
+                <button type="button" class="btn btn-secondary">Before</button>
+            </div>
+            <div class="col-9">
+                <h2>Before</h2>
+                <p>Click the button to insert some text before this paragraph</p>
+            </div>
+        </div>
+        <hr>
+        <div class="row" id="after">
+            <div class="col-3">
+                <button type="button" class="btn btn-secondary">After</button>
+            </div>
+            <div class="col-9">
+                <h2>After</h2>
+                <p>Click the button to insert some text after this paragraph</p>
+            </div>
+        </div>
+        <hr>
+        <div class="row" id="append">
+            <div class="col-3">
+                <button type="button" class="btn btn-secondary">Append</button>
+            </div>
+            <div class="col-9">
+                <h2>Append</h2>
+                <p>Click the button to append an img element to this column</p>
+            </div>
+        </div>
+        <hr>
+        <div class="row" id="html">
+            <div class="col-3">
+                <button type="button" class="btn btn-secondary">Html</button>
+            </div>
+            <div class="col-9">
+                <h2>Html</h2>
+                <p>Click the button to set the html for this column</p>
+            </div>
+        </div>
+        <hr>
+        <div class="row" id="attr">
+            <div class="col-3">
+                <button type="button" class="btn btn-secondary">Attr</button>
+            </div>
+            <div class="col-9">
+                <h2>Attr</h2>
+                <p>Click the button to change the src attribute of the image below</p>
+                <img src="./images/globe.png" alt="globe">
+            </div>
+        </div>
+        <hr>
+        <div class="row" id="val">
+            <div class="col-3">
+                <button type="button" class="btn btn-secondary">Val</button>
+            </div>
+            <div class="col-9">
+                <h2>Val</h2>
+                <p>Click a button to change the value of the textbox below</p>
+                <div>
+                    <button type="button" class="btn btn-dark btn-sm">Feed</button>
+                    <button type="button" class="btn btn-dark btn-sm">the</button>
+                    <button type="button" class="btn btn-dark btn-sm">Input</button>
+                </div>
+                <br>
+                <input class="form-control" type="text" placeholder="Click a button" readonly>
+            </div>
+        </div>
+        <hr>
+        <div class="row" id="text">
+            <div class="col-3">
+                <button type="button" class="btn btn-secondary">Text</button>
+            </div>
+            <div class="col-9">
+                <h2>Text</h2>
+                <p>Click the button to convert the bold <b>word</b> to regular text</p>
+            </div>
+        </div>
+        <hr>
+    </div>
+    <!--Jquery and Bootstrap-->
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.js"
+    integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="main.js"></script>
+</body>
+</html>

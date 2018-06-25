@@ -1,0 +1,22 @@
+button {
+    vertical-align: middle;
+}
+
+img {
+    height: 64px;
+    width: auto;
+}
+
+div.col-3 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.red {
+    color: red;
+}
