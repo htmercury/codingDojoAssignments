@@ -1,0 +1,71 @@
+SELECT users.first_name, users.last_name, users2.first_name as friend_first_name, users2.last_name as friend_last_name FROM users
+
+LEFT JOIN friendships ON users.id = friendships.friend_1_id
+
+LEFT JOIN users as users2 on friendships.friend_2_id = users2.id
+
+1. Return all users who are friends with Kermit, make sure their names are displayed in results.
+SELECT users.first_name, users.last_name, users2.first_name as friend_first_name, users2.last_name as friend_last_name FROM users
+
+
+LEFT JOIN friendships ON users.id = friendships.friend_1_id
+
+
+LEFT JOIN users as users2 on friendships.friend_2_id = users2.id
+
+
+WHERE users2.first_name='Kermit'
+
+2. Return the count of all friendships
+SELECT COUNT(friendships.friend_1_id) AS num_friendships FROM friendships
+
+3. Find out who has the most friends and return the count of their friends.
+SELECT users.first_name, users.last_name, COUNT(users2.first_name) as friend_num FROM users
+
+
+LEFT JOIN friendships ON users.id = friendships.friend_1_id
+
+
+LEFT JOIN users as users2 on friendships.friend_2_id = users2.id
+
+
+GROUP BY users.first_name
+
+
+LIMIT 0,1;
+
+4. Create a new user and make them friends with Eli Byers, Kermit The Frog, and Marky Mark
+INSERT INTO users (first_name, last_name, created_at)
+
+VALUES('Pepe', 'The Frog', NOW());
+
+INSERT INTO friendships (friend_1_id, friend_2_id, created_at)
+
+VALUES(6, 2, NOW());
+
+INSERT INTO friendships (friend_1_id, friend_2_id, created_at)
+
+VALUES(6, 4, NOW());
+
+INSERT INTO friendships (friend_1_id, friend_2_id, created_at)
+
+VALUES(6, 5, NOW());
+
+5. Return the friends of Eli in alphabetical order
+SELECT users.first_name, users.last_name, users2.first_name as friend_first_name, users2.last_name as friend_last_name FROM users
+
+JOIN friendships ON users.id = friendships.friend_1_id
+
+JOIN users as users2 on friendships.friend_2_id = users2.id
+
+WHERE users2.id = 2;
+
+6. Remove Marky Marky from Eli’s friends.
+DELETE FROM friendships WHERE friend_1_id=2 AND friend_2_id=5;
+
+7. Return all friendships, displaying just the first and last name of both friends
+SELECT users.first_name, users.last_name, users2.first_name as friend_first_name, users2.last_name as friend_last_name FROM users
+
+JOIN friendships ON users.id = friendships.friend_1_id
+
+JOIN users as users2 on friendships.friend_2_id = users2.id

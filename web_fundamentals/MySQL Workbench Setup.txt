@@ -1,0 +1,6 @@
+USE twitter
+INSERT INTO users (first_name, last_name, handle, birthday, created_at, updated_at)
+VALUES ('Bobby', 'Bob', 'BB', '1996-12-05', NOW(), NOW());
+SELECT * FROM users;
+UPDATE users SET handle='BBB' where id=6;
+DELETE FROM users where id=6;
