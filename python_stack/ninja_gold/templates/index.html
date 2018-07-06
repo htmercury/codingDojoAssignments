@@ -1,0 +1,127 @@
+<html>
+
+<head>
+    <title>Ninja Gold</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+        crossorigin="anonymous">
+    <style>
+        h6 {
+            font-weight: 400;
+        }
+        p {
+            white-space: nowrap;
+            display: inline-block;
+            margin: 5px;
+        }
+        button {
+            width: 150px;
+            margin: 16px 0;
+        }
+        #log {
+            margin: 10px;
+            height: 128px;
+            border: 2px solid black;
+            overflow-y:auto
+        }
+        #log p {
+            display: block;
+            padding-left: 16px;
+        }
+        .jumbotron {
+            height: 100vh;
+            margin: 0;
+        }
+        .form-control {
+            width: 100px;
+            display: inline-block;
+        }
+        .maps {
+            display: flex;
+            justify-content: space-evenly;
+        }
+        .maps div {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid black;
+            margin: 10px;
+            min-width: 175px;
+            min-height: 175px;
+            flex-grow: 1;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class='jumbotron'>
+    <div class='inventory'>
+        <p>Your Gold:</p>
+        <input class="form-control" id="disabledInput" type="text" placeholder="{{ gold }}" disabled>
+    </div>
+    <div class='maps'>
+        <div>
+            <h5>Farm</h5>
+            <h6>(earns 10-20 golds)</h6>
+            <form action='/process_money' method="POST">
+                <input type="hidden" name="lower" value=10>
+                <input type="hidden" name="upper" value=20>
+                <input type="hidden" name="location" value="farm">
+                <button type="submit" class="btn btn-success mb-2">Find Gold!</button>
+            </form>
+        </div>
+        <div>
+            <h5>Cave</h5>
+            <h6>(earns 5-10 golds)</h6>
+            <form action='/process_money' method="POST">
+                <input type="hidden" name="lower" value=5>
+                <input type="hidden" name="upper" value=10>
+                <input type="hidden" name="location" value="cave">
+                <button type="submit" class="btn btn-success mb-2">Find Gold!</button>
+            </form>
+        </div>
+        <div>
+            <h5>House</h5>
+            <h6>(earns 2-5 golds)</h6>
+            <form action='/process_money' method="POST">
+                <input type="hidden" name="lower" value=2>
+                <input type="hidden" name="upper" value=5>
+                <input type="hidden" name="location" value="house">                
+                <button type="submit" class="btn btn-success mb-2">Find Gold!</button>
+            </form>
+        </div>
+        <div>
+            <h5>Casino</h5>
+            <h6>(earns/takes 0-50 golds)</h6>
+            <form action='/process_money' method="POST">
+                <input type="hidden" name="lower" value=-50>
+                <input type="hidden" name="upper" value=50>
+                <input type="hidden" name="location" value="casino">
+                <button type="submit" class="btn btn-success mb-2">Find Gold!</button>
+            </form>
+        </div>
+    </div>
+    <p>Activities:</p>
+    <div id='log'>
+        {% for log in logs %}
+        {{ log|safe }}
+        {% endfor %}
+    </div>
+    </div>
+    <script>
+        function updateScroll(){
+            var element = document.getElementById("log");
+            element.scrollTop = element.scrollHeight;
+        }
+        updateScroll();
+    </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

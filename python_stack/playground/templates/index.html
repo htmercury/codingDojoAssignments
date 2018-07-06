@@ -1,0 +1,24 @@
+<head>
+<style>
+body {
+    background-color: light blue;
+    font-family: sans-serif;
+    color: #505050;
+    text-align: center;
+}
+.box {
+    background-color: {{ color }};
+    height: 128px;
+    width: 128px;
+    margin: 0px 15px;
+    display: inline-block;
+    border: 3px solid #505050;
+}
+</style>
+</head>
+<body>
+    <h2>Welcome!</h2>
+    {% for i in range(num) %}
+        <div class='box'></div>
+    {% endfor %}
+</body>

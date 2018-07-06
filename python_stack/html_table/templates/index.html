@@ -1,0 +1,30 @@
+<head>
+    <style>
+    </style>
+    <meta charset="utf-8">
+    <title>HTML table</title>
+    <meta name="description" content="html tables with python flask." >
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+</head>
+<body>
+    <div class='container'>
+        <table class='table table-striped'>
+            <thead class='thead-dark'>
+                <tr>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Full Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in range(len) %}
+                <tr>
+                    <td>{{ users[i]['first_name'] }}</td>
+                    <td>{{ users[i]['last_name'] }}</td>
+                    <td>{{ users[i]['first_name'] + ' ' + users[i]['last_name'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>

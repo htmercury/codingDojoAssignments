@@ -1,0 +1,28 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+
+h3 {
+    text-align: center;
+}
+
+p {
+    display: inline-block;
+}
+
+.fill {
+    flex-grow: 1;
+}
+
+.survey {
+    width: 400px;
+}
+
+.result {
+    width: 300px;
+}
+
+.result > div {
+    display: flex;
+}

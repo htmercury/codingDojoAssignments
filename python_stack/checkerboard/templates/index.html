@@ -1,0 +1,53 @@
+<head>
+<style>
+body {
+    background-color: light blue;
+    font-family: sans-serif;
+    color: #505050;
+    text-align: center;
+}
+.box, .other_box {
+    height: 64px;
+    width: 64px;
+    display: inline-block;
+}
+
+{% set config_1 = 'even' %}
+{% set config_2 = 'odd' %}
+{% if x%2 != 0  %}
+    {% set config_2 = 'even' %}
+    {% set config_1 = 'odd' %}
+{% endif %}
+
+.box:nth-child({{ config_1 }}) {
+    background-color: red;
+}
+.box:nth-child({{ config_2 }}) {
+    background-color: black;
+}
+.other_box:nth-child(odd) {
+    background-color: red;
+}
+.other_box:nth-child(even) {
+    background-color: black;
+}
+.container {
+    width: {{70 * x}}px;
+    margin: auto;
+}
+</style>
+</head>
+<body>
+    <h2>Welcome!</h2>
+    <div class='container'>
+    {% for i in range(y) %}
+        {% set css = 'box' %}
+        {% if i%2 == 0 %}
+            {% set css = 'other_box' %}
+        {% endif %}
+        {% for j in range(x) %}
+        <div class={{ css }}></div>
+        {% endfor %}
+    {% endfor %}
+    </div>
+</body>
