@@ -1,0 +1,55 @@
+(djangoPy3Env) C:\Users\kawon\Documents\Git\codingDojoAssignments\python_stack\django\assignment_users>python manage.py makemigrations
+Migrations for 'user_login':
+  apps\user_login\migrations\0001_initial.py:
+    - Create model User
+
+(djangoPy3Env) C:\Users\kawon\Documents\Git\codingDojoAssignments\python_stack\django\assignment_users>python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, sessions, user_login
+Running migrations:
+  Rendering model states... DONE
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying sessions.0001_initial... OK
+  Applying user_login.0001_initial... OK
+
+(djangoPy3Env) C:\Users\kawon\Documents\Git\codingDojoAssignments\python_stack\django\assignment_users>python manage.py shell
+Python 3.6.4 (v3.6.4:d48eceb, Dec 19 2017, 06:04:45) [MSC v.1900 32 bit (Intel)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from apps.user_login.models import *
+>>> User.objects.all()
+<QuerySet []>
+>>> User.objects.last()
+>>> User.objects.create(first_name='Jane', last_name='Doe', email_address='jane@gmail.com', age=22)
+<User: User object>
+>>> User.objects.create(first_name='JJ', last_name='DD', email_address='jjdd@gmail.com', age=11)
+<User: User object>
+>>> User.objects.create(first_name='some', last_name='one', email_address='someone@gmail.com', age=33)
+<User: User object>
+>>> User.objects.first()
+<User: User object>
+>>> User.objects.first().__dict__
+{'_state': <django.db.models.base.ModelState object at 0x03DFEA50>, 'id': 1, 'first_name': 'Jane', 'last_name': 'Doe', 'email_address': 'jane@gmail.com', 'age': 22, 'created_at': datetime.datetime(2018, 7, 12, 17, 1, 28, 232083, tzinfo=<UTC>), 'updated_at': datetime.datetime(2018, 7, 12, 17, 1, 28, 232083, tzinfo=<UTC>)}
+>>> User.objects.values().order_by('first_name')
+<QuerySet [{'id': 2, 'first_name': 'JJ', 'last_name': 'DD', 'email_address': 'jjdd@gmail.com', 'age': 11, 'created_at': datetime.datetime(2018, 7, 12, 17, 2, 5, 66772, tzinfo=<UTC>), 'updated_at': datetime.datetime(2018, 7, 12, 17, 2, 5, 66772, tzinfo=<UTC>)}, {'id': 1, 'first_name': 'Jane', 'last_name': 'Doe', 'email_address': 'jane@gmail.com', 'age': 22, 'created_at': datetime.datetime(2018, 7, 12, 17, 1, 28, 232083, tzinfo=<UTC>), 'updated_at': datetime.datetime(2018, 7, 12, 17, 1, 28, 232083, tzinfo=<UTC>)}, {'id': 3, 'first_name': 'some', 'last_name': 'one', 'email_address': 'someone@gmail.com', 'age': 33, 'created_at': datetime.datetime(2018, 7, 12, 17, 2, 32, 448871, tzinfo=<UTC>), 'updated_at': datetime.datetime(2018, 7, 12, 17, 2, 32, 448871, tzinfo=<UTC>)}]>
+>>> User.objects.values().order_by('-first_name')
+<QuerySet [{'id': 3, 'first_name': 'some', 'last_name': 'one', 'email_address': 'someone@gmail.com', 'age': 33, 'created_at': datetime.datetime(2018, 7, 12, 17, 2, 32, 448871, tzinfo=<UTC>), 'updated_at': datetime.datetime(2018, 7, 12, 17, 2, 32, 448871, tzinfo=<UTC>)}, {'id': 1, 'first_name': 'Jane', 'last_name': 'Doe', 'email_address': 'jane@gmail.com', 'age': 22, 'created_at': datetime.datetime(2018, 7, 12, 17, 1, 28, 232083, tzinfo=<UTC>), 'updated_at': datetime.datetime(2018, 7, 12, 17, 1, 28, 232083, tzinfo=<UTC>)}, {'id': 2, 'first_name': 'JJ', 'last_name': 'DD', 'email_address': 'jjdd@gmail.com', 'age': 11, 'created_at': datetime.datetime(2018, 7, 12, 17, 2, 5, 66772, tzinfo=<UTC>), 'updated_at': datetime.datetime(2018, 7, 12, 17, 2, 5, 66772, tzinfo=<UTC>)}]>
+>>> u = User.objects.get(id=3)
+>>> u.last_name = 'something else'
+>>> u.save()
+>>> User.objects.create(first_name='delet', last_name='this', email_address='del@gmail.com', age=77)
+<User: User object>
+>>> u = User.objects.get(id=4)
+>>> u.delete()
+(1, {'user_login.User': 1})

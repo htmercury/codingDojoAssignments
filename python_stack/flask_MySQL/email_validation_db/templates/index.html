@@ -1,0 +1,54 @@
+<html>
+
+<head>
+    <title>Email Validation</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <style>
+        form {
+            max-width: 500px;
+            margin: 20px auto;
+        }
+        button {
+            margin: 10px;
+        }
+        .jumbotron {
+            max-width: 2000px;
+            text-align: center;
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .error {
+            color: red;
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <div class='jumbotron'>
+        <h3>Validate an email!</h3>
+        <form action='/register' method="POST" autocomplete="off">
+            {% set messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            <p class="{{ messages[0][0] }}">{{ messages[0][1] }}</p>
+            {% endif %}
+            <input name='email' id='email' type="text" class="form-control" value="{{ email }}">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
+    <script>
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Amadon Store</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <style>
+        body {
+            padding: 20px 0;
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        p {
+            margin: 5px;
+        }
+
+        h4 {
+            font-weight: 400;
+        }
+
+        form > input, button {
+            margin: 16px 0;
+        }
+
+        select {
+            max-width: 55px;
+        }
+
+        .form-control {
+            margin-right: 10px;
+            display: inline;
+        }
+
+        .form-group {
+            margin-left: 20px;
+        }
+
+        .fill {
+            flex-grow: 1;
+        }
+
+        .content {
+            width: 768px;
+        }
+
+        .table td, .form-control {
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+    <div class='content'>
+        <h4>Amadon Store!</h4>
+        <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+            <th scope="col">Item</th>
+            <th scope="col">Price</th>
+            <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+            <td>{{ item.name }}</td>
+            <td>${{ item.price }}</td>
+            <td class='options'>
+                <form action='/amadon/buy' method='POST'>
+                    {% csrf_token %}
+                    <input name='id' class='form-control' type='hidden' value='{{ item.id }}' readonly>
+                    <select name='amount' id="inputState" class="form-control">
+                        <option selected>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                    </select>
+                    <button type='submit' class='btn btn-primary'>Buy!</button>
+                </form>
+            </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+        <a href='/reset'>Reset</a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,102 @@
+(djangoPy3Env) C:\Users\kawon\Documents\Git\codingDojoAssignments\python_stack\django\assignment_dojo_ninjas>python manage.py makemigrations
+Migrations for 'dojo_ninjas':
+  apps\dojo_ninjas\migrations\0001_initial.py:
+    - Create model Dojo
+    - Create model Ninja
+
+(djangoPy3Env) C:\Users\kawon\Documents\Git\codingDojoAssignments\python_stack\django\assignment_dojo_ninjas>python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, dojo_ninjas, sessions
+Running migrations:
+  Rendering model states... DONE
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying dojo_ninjas.0001_initial... OK
+  Applying sessions.0001_initial... OK
+
+(djangoPy3Env) C:\Users\kawon\Documents\Git\codingDojoAssignments\python_stack\django\assignment_dojo_ninjas>python manage.py shell
+Python 3.6.4 (v3.6.4:d48eceb, Dec 19 2017, 06:04:45) [MSC v.1900 32 bit (Intel)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from apps.dojo_ninjas.models import *
+>>> Dojo.objects.create(name='CodingDojo Silicon Valley',city='Mountain View', state='CA')
+<Dojo: Dojo object>
+>>> Dojo.objects.create(name='CodingDojo Seattle',city='Seattle', state='WA')
+<Dojo: Dojo object>
+>>> Dojo.objects.create(name='CodingDojo New York',city='New York', state='NY')
+<Dojo: Dojo object>
+>>> Dojo.objects.get(id=1).delete()
+(1, {'dojo_ninjas.Ninja': 0, 'dojo_ninjas.Dojo': 1})
+>>> Dojo.objects.get(id=2).delete()
+(1, {'dojo_ninjas.Ninja': 0, 'dojo_ninjas.Dojo': 1})
+>>> Dojo.objects.get(id=3).delete()
+(1, {'dojo_ninjas.Ninja': 0, 'dojo_ninjas.Dojo': 1})
+>>> Dojo.models.create(name='CodingDojo Silicon Valley',city='Mountain View', state='CA')
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: type object 'Dojo' has no attribute 'models'
+>>> Dojo.objects.create(name='CodingDojo Seattle',city='Seattle', state='WA')
+<Dojo: Dojo object>
+>>> Dojo.objects.create(name='CodingDojo New York',city='New York', state='NY')
+<Dojo: Dojo object>
+>>> Ninja.objects.create(first_name='jane', last_name='doe', dojo=Dojo.objects.get(id=4))
+<Ninja: Ninja object>
+>>> Ninja.objects.create(first_name='Valley', last_name='1', dojo=Dojo.objects.get(id=4))
+<Ninja: Ninja object>
+>>> Ninja.objects.create(first_name='Valley', last_name='2', dojo=Dojo.objects.get(id=4))
+<Ninja: Ninja object>
+>>> Ninja.objects.create(first_name='Sea', last_name='1', dojo=Dojo.objects.get(id=5))
+<Ninja: Ninja object>
+>>> Ninja.objects.create(first_name='Sea', last_name='2', dojo=Dojo.objects.get(id=5))
+<Ninja: Ninja object>
+>>> Ninja.objects.create(first_name='Sea', last_name='3', dojo=Dojo.objects.get(id=5))
+<Ninja: Ninja object>
+>>> Ninja.objects.all().values()
+<QuerySet [{'id': 1, 'first_name': 'jane', 'last_name': 'doe', 'dojo_id': 4}, {'id': 2, 'first_name': 'Valley', 'last_name': '1', 'dojo_id': 4}, {'id': 3, 'first_name': 'Valley', 'last_name': '2', 'dojo_id': 4}, {'id': 4, 'first_name': 'Sea', 'last_name': '1', 'dojo_id': 5}, {'id': 5, 'first_name': 'Sea', 'last_name': '2', 'dojo_id': 5}, {'id': 6, 'first_name': 'Sea', 'last_name': '3', 'dojo_id': 5}]>
+>>> Dojo.objects.all().values()
+<QuerySet [{'id': 4, 'name': 'CodingDojo Seattle', 'city': 'Seattle', 'state': 'WA'}, {'id': 5, 'name': 'CodingDojo New York', 'city': 'New York', 'state': 'NY'}]>
+>>> Dojo.objects.create(name='CodingDojo Silicon Valley',city='Mountain View', state='CA')
+<Dojo: Dojo object>
+>>> Dojo.objects.all().values()
+<QuerySet [{'id': 4, 'name': 'CodingDojo Seattle', 'city': 'Seattle', 'state': 'WA'}, {'id': 5, 'name': 'CodingDojo New York', 'city': 'New York', 'state': 'NY'}, {'id': 6, 'name': 'CodingDojo Silicon Valley', 'city': 'Mountain View', 'state': 'CA'}]>
+>>> Ninja.objects.create(first_name='York', last_name='1', dojo=Dojo.objects.get(id=6))
+<Ninja: Ninja object>
+>>> Ninja.objects.create(first_name='York', last_name='2', dojo=Dojo.objects.get(id=6))
+<Ninja: Ninja object>
+>>> Ninja.objects.create(first_name='York', last_name='3', dojo=Dojo.objects.get(id=6))
+<Ninja: Ninja object>
+>>> Ninja.objects.all().values()
+<QuerySet [{'id': 1, 'first_name': 'jane', 'last_name': 'doe', 'dojo_id': 4}, {'id': 2, 'first_name': 'Valley', 'last_name': '1', 'dojo_id': 4}, {'id': 3, 'first_name': 'Valley', 'last_name': '2', 'dojo_id': 4}, {'id': 4, 'first_name': 'Sea', 'last_name': '1', 'dojo_id': 5}, {'id': 5, 'first_name': 'Sea', 'last_name': '2', 'dojo_id': 5}, {'id': 6, 'first_name': 'Sea', 'last_name': '3', 'dojo_id': 5}, {'id': 7, 'first_name': 'York', 'last_name': '1', 'dojo_id': 6}, {'id': 8, 'first_name': 'York', 'last_name': '2', 'dojo_id': 6}, {'id': 9, 'first_name': 'York', 'last_name': '3', 'dojo_id': 6}]>
+>>> Ninja.objects.filter(dojo=Dojo.objects.get(id=4))
+<QuerySet [<Ninja: Ninja object>, <Ninja: Ninja object>, <Ninja: Ninja object>]>
+>>> Ninja.objects.filter(dojo=Dojo.objects.last())
+<QuerySet [<Ninja: Ninja object>, <Ninja: Ninja object>, <Ninja: Ninja object>]>
+>>> Ninja.objects.filter(dojo=Dojo.objects.last()).values()
+<QuerySet [{'id': 7, 'first_name': 'York', 'last_name': '1', 'dojo_id': 6}, {'id': 8, 'first_name': 'York', 'last_name': '2', 'dojo_id': 6}, {'id': 9, 'first_name': 'York', 'last_name': '3', 'dojo_id': 6}]>
+>>> Ninja.objects.filter(dojo=Dojo.objects.first()).values()
+<QuerySet [{'id': 1, 'first_name': 'jane', 'last_name': 'doe', 'dojo_id': 4}, {'id': 2, 'first_name': 'Valley', 'last_name': '1', 'dojo_id': 4}, {'id': 3, 'first_name': 'Valley', 'last_name': '2', 'dojo_id': 4}]>
+>>> exit()
+
+(djangoPy3Env) C:\Users\kawon\Documents\Git\codingDojoAssignments\python_stack\django\assignment_dojo_ninjas>python manage.py makemigrations
+You are trying to add a non-nullable field 'desc' to dojo without a default; we can't do that (the database needs something to populate existing rows).
+Please select a fix:
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)
+ 2) Quit, and let me add a default in models.py
+Select an option: 1
+Please enter the default value now, as valid Python
+The datetime and django.utils.timezone modules are available, so you can do e.g. timezone.now
+Type 'exit' to exit this prompt
+>>> ''
+Migrations for 'dojo_ninjas':
+  apps\dojo_ninjas\migrations\0002_dojo_desc.py:
+    - Add field desc to dojo

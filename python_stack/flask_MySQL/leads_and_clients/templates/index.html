@@ -1,0 +1,122 @@
+<html>
+
+<head>
+    <title>Leads and Clients</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <style>
+        form {
+            max-width: 500px;
+            margin: 20px auto;
+        }
+        #chartContainer {
+            display: inline-block;
+            width: 768px;
+            max-height: 420px;
+        }
+        .canvasjs-chart-canvas {
+            position: static !important;
+        }
+        .jumbotron {
+            max-width: 2000px;
+            text-align: center;
+        }
+        .table {
+            max-width: 768px;
+            margin: 20px auto;
+        }
+        .error {
+            color: red;
+        }
+        @media only screen and (min-width: 1295px) {
+        .jumbotron {
+            display: flex;
+            justify-content: space-evenly;
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <div class='jumbotron'>
+        <div>
+            <h3>Enter a date between 2011 and 2013</h3>
+            <form action='/search' method="POST" autocomplete="off">
+                <div class="row">
+                    <div class="col">
+                        <input name='start_date' id='datepicker_1' type="text" class="form-control" value="{{ start_date }}">
+                    </div>
+                    <div class="col">
+                        <input name='end_date' id='datepicker_2' type="text" class="form-control" value="{{ end_date }}">
+                    </div>
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+                </div>
+            </form>
+            <h5><u>List of all customers and # of leads</u></h5>
+            <table class='table table-striped'>
+                <thead class='thead-dark'>
+                    <th scope='col'>Customer Name</th>
+                    <th scope='col'>Number of Leads</th>
+                </thead>
+                <tbody>
+                {% for customer in all_customers %}
+                    <tr>
+                        <td>{{ customer.client_name }}</td>
+                        <td>{{ customer.number_of_leads }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div id='chartContainer'></div>
+    </div>
+
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+    <script>
+        $(function() {
+            $( "#datepicker_1" ).datepicker(
+                { dateFormat: 'yy/dd/mm' }
+            );
+            $( "#datepicker_2" ).datepicker(
+                { dateFormat: 'yy/dd/mm' }
+            );
+        });
+        $(function () {
+            var options = {
+                title: {
+                    text: "Customers and number of new leads"
+                },
+                subtitles: [{
+                    text: ""
+                }],
+                animationEnabled: true,
+                data: [{
+                    type: "pie",
+                    startAngle: 40,
+                    toolTipContent: "<b>{label}</b>: {y}%",
+                    showInLegend: "true",
+                    legendText: "{label}",
+                    indexLabelFontSize: 16,
+                    indexLabel: "{label} - {y}",
+                    dataPoints: [
+                        {% for customer in all_customers %}
+                        { y: {{ customer.number_of_leads }}, label: "{{ customer.client_name }}" },
+                        {% endfor %}
+                    ]
+                }]
+            };
+            $("#chartContainer").CanvasJSChart(options);
+
+        });
+    </script>
+</body>
+
+</html>

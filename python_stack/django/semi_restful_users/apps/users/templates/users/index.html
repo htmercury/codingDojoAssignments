@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Semi-Restful Users</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        p {
+            margin: 5px;
+        }
+
+        h3 {
+            font-weight: 400;
+        }
+
+        form > input, button {
+            margin: 16px 0;
+        }
+
+        .form-group {
+            margin-left: 20px;
+        }
+
+        .fill {
+            flex-grow: 1;
+        }
+
+        .content {
+            width: 768px;
+        }
+
+        .divide {
+            width: 3px;
+            height: 60vh;
+            border-radius: 5px;
+            background-color: grey;
+            margin: 0 40px;
+        }
+
+        .result-container {
+            display: flex;
+            flex-direction: column;
+            align-items:flex-end;
+            min-height: 300px;
+            overflow: hidden;
+        }
+
+        .result {
+            display: flex;
+            overflow: auto;
+            max-height: 270px;
+            padding-right: 17px;
+        }
+
+        .result p {
+            height: 50px;
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class='content'>
+        <h3>Users</h3>
+        <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+            <th scope="col">id</th>
+            <th scope="col">Full Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Created At</th>
+            <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+            <tr>
+            <th scope="row">{{ user.id }}</th>
+            <td>{{ user.first_name }} {{ user.last_name }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.created_at|date:"M d, Y" }}</td>
+            <td class='options'>
+                <a href='/users/{{ user.id }}'>Show</a>
+                <a href='/users/{{ user.id }}/edit'>Edit</a>
+                <a href='/users/{{ user.id }}/destroy'>Delete</a>
+            </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+        <a href='/users/new'>Add a new User</a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

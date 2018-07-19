@@ -1,0 +1,8 @@
+pymysql.err.OperationalError: (2003, "Can't connect to MySQL server on 'test' ([Errno 11001] getaddrinfo failed)")
+fix: Supply correct host name to pymysql.connect()
+
+pymysql.err.OperationalError: (1045, "Access denied for user 'root'@'localhost' (using password: YES)")
+fix: Supply the correct password to pymysql.connect()
+
+pymysql.err.OperationalError: (1045, "Access denied for user 'test'@'localhost' (using password: YES)")
+fix: Supply the correct user name to pymysql.connect()

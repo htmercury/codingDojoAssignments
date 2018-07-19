@@ -1,0 +1,94 @@
+(djangoPy3Env) C:\Users\kawon\Documents\Git\codingDojoAssignments\python_stack\django\assignment_likes_books>python manage.py makemigrations
+Migrations for 'likes_books':
+  apps\likes_books\migrations\0001_initial.py:
+    - Create model Book
+    - Create model User
+    - Add field liked_users to book
+    - Add field uploader to book
+
+(djangoPy3Env) C:\Users\kawon\Documents\Git\codingDojoAssignments\python_stack\django\assignment_likes_books>python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, likes_books, sessions
+Running migrations:
+  Rendering model states... DONE
+  Applying contenttypes.0001_initial... OK
+  Applying auth.0001_initial... OK
+  Applying admin.0001_initial... OK
+  Applying admin.0002_logentry_remove_auto_add... OK
+  Applying contenttypes.0002_remove_content_type_name... OK
+  Applying auth.0002_alter_permission_name_max_length... OK
+  Applying auth.0003_alter_user_email_max_length... OK
+  Applying auth.0004_alter_user_username_opts... OK
+  Applying auth.0005_alter_user_last_login_null... OK
+  Applying auth.0006_require_contenttypes_0002... OK
+  Applying auth.0007_alter_validators_add_error_messages... OK
+  Applying auth.0008_alter_user_username_max_length... OK
+  Applying likes_books.0001_initial... OK
+  Applying sessions.0001_initial... OK
+
+(djangoPy3Env) C:\Users\kawon\Documents\Git\codingDojoAssignments\python_stack\django\assignment_likes_books>User.objects.create(first_name='A', last_name='a', email='Aa@gmail.com')
+'User.objects.create' is not recognized as an internal or external command,
+operable program or batch file.
+
+(djangoPy3Env) C:\Users\kawon\Documents\Git\codingDojoAssignments\python_stack\django\assignment_likes_books>python manage.py shell
+Python 3.6.4 (v3.6.4:d48eceb, Dec 19 2017, 06:04:45) [MSC v.1900 32 bit (Intel)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from apps.likes_books.models import *
+>>> User.objects.create(first_name='A', last_name='a', email='Aa@gmail.com')
+<User: User object>
+>>> User.objects.create(first_name='B', last_name='b', email='Bb@gmail.com')
+<User: User object>
+>>> User.objects.create(first_name='C', last_name='c', email='Cc@gmail.com')
+<User: User object>
+>>> Book.objects.create(name='book1', desc='', uploader=User.objects.get(id=1))
+<Book: Book object>
+>>> Book.objects.create(name='book2', desc='', uploader=User.objects.get(id=1))
+<Book: Book object>
+>>> Book.objects.create(name='book3', desc='', uploader=User.objects.get(id=2))
+<Book: Book object>
+>>> Book.objects.create(name='book4', desc='', uploader=User.objects.get(id=2))
+<Book: Book object>
+>>> Book.objects.create(name='book5', desc='', uploader=User.objects.get(id=3))
+<Book: Book object>
+>>> Book.objects.create(name='book6', desc='', uploader=User.objects.get(id=3))
+<Book: Book object>
+>>> u = User.objects.get(id=1)
+>>> b = Book.objects.first()
+>>> u.liked_books.add(b)
+>>> b = Book.objects.last()
+>>> u.liked_books.add(b)
+>>> u = User.objects.get(id=2)
+>>> b = Book.objects.get(id=1)
+>>> u = User.objects.get(id=2)
+>>> u.liked_books.add(b)
+>>> b = Book.objects.get(id=3)
+>>> u.liked_books.add(b)
+>>> u = User.objects.get(id=3)
+>>> b = Book.objects.get(id=1)
+>>> u.liked_books.add(b)
+>>> b = Book.objects.get(id=2)
+>>> u.liked_books.add(b)
+>>> b = Book.objects.get(id=3)
+>>> u.liked_books.add(b)
+>>> b = Book.objects.get(id=4)
+>>> u.liked_books.add(b)
+>>> b = Book.objects.get(id=5)
+>>> u.liked_books.add(b)
+>>> b = Book.objects.get(id=6)
+>>> u.liked_books.add(b)
+>>> b = Book.objects.get(id=1)
+>>> b.liked_users.all().values()
+<QuerySet [{'id': 1, 'first_name': 'A', 'last_name': 'a', 'email': 'Aa@gmail.com', 'created_at': datetime.datetime(2018, 7, 12, 19, 33, 42, 200812, tzinfo=<UTC>), 'updated_at': datetime.datetime(2018, 7, 12, 19, 33, 42, 200812, tzinfo=<UTC>)}, {'id': 2, 'first_name': 'B', 'last_name': 'b', 'email': 'Bb@gmail.com', 'created_at': datetime.datetime(2018, 7, 12, 19, 34, 6, 215658, tzinfo=<UTC>), 'updated_at': datetime.datetime(2018, 7, 12, 19, 34, 6, 215658, tzinfo=<UTC>)}, {'id': 3, 'first_name': 'C', 'last_name': 'c', 'email': 'Cc@gmail.com', 'created_at': datetime.datetime(2018, 7, 12, 19, 34, 15, 994595, tzinfo=<UTC>), 'updated_at': datetime.datetime(2018, 7, 12, 19, 34, 15, 994595, tzinfo=<UTC>)}]>
+>>> b.uploader.__dict__()
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+TypeError: 'dict' object is not callable
+>>> b.uploader.__dict__
+{'_state': <django.db.models.base.ModelState object at 0x010A78B0>, 'id': 1, 'first_name': 'A', 'last_name': 'a', 'email': 'Aa@gmail.com', 'created_at': datetime.datetime(2018, 7, 12, 19, 33, 42, 200812, tzinfo=<UTC>), 'updated_at': datetime.datetime(2018, 7, 12, 19, 33, 42, 200812, tzinfo=<UTC>)}
+>>> b = Book.objects.get(id=2)
+>>> b.liked_users.all().values()
+<QuerySet [{'id': 3, 'first_name': 'C', 'last_name': 'c', 'email': 'Cc@gmail.com', 'created_at': datetime.datetime(2018, 7, 12, 19, 34, 15, 994595, tzinfo=<UTC>), 'updated_at': datetime.datetime(2018, 7, 12, 19, 34, 15, 994595, tzinfo=<UTC>)}]>
+>>> b = Book.objects.get(id=2)
+>>> b.uploader.__dict__
+{'_state': <django.db.models.base.ModelState object at 0x010A7B70>, 'id': 1, 'first_name': 'A', 'last_name': 'a', 'email': 'Aa@gmail.com', 'created_at': datetime.datetime(2018, 7, 12, 19, 33, 42, 200812, tzinfo=<UTC>), 'updated_at': datetime.datetime(2018, 7, 12, 19, 33, 42, 200812, tzinfo=<UTC>)}

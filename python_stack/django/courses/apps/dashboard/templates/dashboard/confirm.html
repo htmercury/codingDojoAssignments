@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Semi-Restful Users</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        p {
+            margin: 5px 0;
+        }
+
+        h4 {
+            font-weight: 400;
+        }
+
+        form > input, button {
+            margin: 16px 0;
+        }
+
+        button {
+            margin: 0 20px;
+        }
+
+        .desc {
+            word-wrap: break-word;
+        }
+
+        .options {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+        }
+
+        .form-group {
+            margin-left: 20px;
+        }
+
+        .fill {
+            flex-grow: 1;
+        }
+
+        .content {
+            width: 768px;
+        }
+
+        .sep {
+            height: 0.6em;
+            width: 2px;
+            background-color:#212529;
+            display: inline-block;
+            margin: 0 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class='content'>
+        <h4>Are you sure you want to delete the following course?</h4>
+        <p>Name: {{ course.name }}</p>
+        <p>Description: {{ course.desc }}</p>
+        <div class='options'>
+            <a href='/courses' role='button' class='btn btn-secondary'>No</a>
+            <form action='/courses/{{ course.id }}/delete' method='POST'>
+                {% csrf_token %}
+                <button type='submit' class='btn btn-danger'>Yes! I want to delete this</button>
+            </form>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

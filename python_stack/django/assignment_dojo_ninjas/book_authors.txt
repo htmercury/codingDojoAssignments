@@ -1,0 +1,132 @@
+(djangoPy3Env) C:\Users\kawon\Documents\Git\codingDojoAssignments\python_stack\django\assignment_book_authors>python manage.py makemigrations
+Migrations for 'book_authors':
+  apps\book_authors\migrations\0002_auto_20180712_1334.py:
+    - Alter field email on author
+    - Alter field last_name on author
+    - Alter field desc on book
+
+(djangoPy3Env) C:\Users\kawon\Documents\Git\codingDojoAssignments\python_stack\django\assignment_book_authors>python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, book_authors, contenttypes, dojo_ninjas, sessions
+Running migrations:
+  Rendering model states... DONE
+  Applying book_authors.0002_auto_20180712_1334... OK
+
+(djangoPy3Env) C:\Users\kawon\Documents\Git\codingDojoAssignments\python_stack\django\assignment_book_authors>python manage.py shell
+Python 3.6.4 (v3.6.4:d48eceb, Dec 19 2017, 06:04:45) [MSC v.1900 32 bit (Intel)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from apps.book_authors.models import *
+>>> Book.models.create(name='C sharp')
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: type object 'Book' has no attribute 'models'
+>>> Book.model.create(name='C sharp')
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+AttributeError: type object 'Book' has no attribute 'model'
+>>> Book.objects.create(name='C sharp')
+<Book: Book object>
+>>> Book.objects.create(name='Java')
+<Book: Book object>
+>>> Book.objects.create(name='Python')
+<Book: Book object>
+>>> Book.objects.create(name='PHP')
+<Book: Book object>
+>>> Book.objects.create(name='Ruby')
+<Book: Book object>
+>>> Author.objects.create(first_name='Mike')
+<Author: Author object>
+>>> Author.objects.create(first_name='Speros')
+<Author: Author object>
+>>> Author.objects.create(first_name='John')
+<Author: Author object>
+>>> Author.objects.create(first_name='Jadee')
+<Author: Author object>
+>>> Author.objects.create(first_name='Jay')
+<Author: Author object>
+>>> exit()
+
+(djangoPy3Env) C:\Users\kawon\Documents\Git\codingDojoAssignments\python_stack\django\assignment_book_authors>python manage.py makemigrations
+Migrations for 'book_authors':
+  apps\book_authors\migrations\0003_author_notes.py:
+    - Add field notes to author
+
+(djangoPy3Env) C:\Users\kawon\Documents\Git\codingDojoAssignments\python_stack\django\assignment_book_authors>python manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, book_authors, contenttypes, dojo_ninjas, sessions
+Running migrations:
+  Rendering model states... DONE
+  Applying book_authors.0003_author_notes... OK
+
+(djangoPy3Env) C:\Users\kawon\Documents\Git\codingDojoAssignments\python_stack\django\assignment_book_authors>python manage.py shell
+Python 3.6.4 (v3.6.4:d48eceb, Dec 19 2017, 06:04:45) [MSC v.1900 32 bit (Intel)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+>>> from apps.books_authors.models import *
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+ModuleNotFoundError: No module named 'apps.books_authors'
+>>> from apps.book_authors.models import *
+>>> Book.objects.all().values()
+<QuerySet [{'id': 1, 'name': 'C sharp', 'desc': '', 'created_at': datetime.datetime(2018, 7, 12, 18, 35, 42, 277034, tzinfo=<UTC>), 'updated_at': datetime.datetime(2018, 7, 12, 18, 35, 42, 277034, tzinfo=<UTC>)}, {'id': 2, 'name': 'Java', 'desc': '', 'created_at': datetime.datetime(2018, 7, 12, 18, 35, 49, 777596, tzinfo=<UTC>), 'updated_at': datetime.datetime(2018, 7, 12, 18, 35, 49, 777596, tzinfo=<UTC>)}, {'id': 3, 'name': 'Python', 'desc': '', 'created_at': datetime.datetime(2018, 7, 12, 18, 35, 53, 996280, tzinfo=<UTC>), 'updated_at': datetime.datetime(2018, 7, 12, 18, 35, 53, 996280, tzinfo=<UTC>)}, {'id': 4, 'name': 'PHP', 'desc': '', 'created_at': datetime.datetime(2018, 7, 12, 18, 35, 57, 918305, tzinfo=<UTC>), 'updated_at': datetime.datetime(2018, 7, 12, 18, 35, 57, 918351, tzinfo=<UTC>)}, {'id': 5, 'name': 'Ruby', 'desc': '', 'created_at': datetime.datetime(2018, 7, 12, 18, 36, 3, 608681, tzinfo=<UTC>), 'updated_at': datetime.datetime(2018, 7, 12, 18, 36, 3, 608681, tzinfo=<UTC>)}]>
+>>> b = Book.objects.get(id=5)
+>>> b.name = 'Ketul'
+>>> b.save()
+>>> a = Author.objects.get(id=5)
+>>> b = Book.objects.get(id=5)
+>>> b.name = 'C#'
+>>> b.save()
+>>> a = Author.objects.get(id=5)
+>>> a.first_name = 'Ketul'
+>>> a.save()
+>>> a = Author.objects.get(id=1)
+>>> b = Book.objects.get(id=1)
+>>> a.books.add(b)
+>>> b = Book.objects.get(id=2)
+>>> a.books.add(b)
+>>> a = Author.objects.get(id=2)
+>>> b = Book.objects.get(id=1)
+>>> a.books.add(b)
+>>> b = Book.objects.get(id=2)
+>>> a.books.add(b)
+>>> b = Book.objects.get(id=3)
+>>> a.books.add(b)
+>>> a = Author.objects.get(id=3)
+>>> b = Book.objects.get(id=1)
+>>> a.books.add(b)
+>>> b = Book.objects.get(id=2)
+>>> a.books.add(b)
+>>> b = Book.objects.get(id=3)
+>>> a.books.add(b)
+>>> b = Book.objects.get(id=4)
+>>> a.books.add(b)
+>>> a = Author.objects.get(id=4)
+>>> b = Book.objects.get(id=1)
+>>> a.books.add(b)
+>>> b = Book.objects.get(id=2)
+>>> a.books.add(b)
+>>> b = Book.objects.get(id=3)
+>>> a.books.add(b)
+>>> b = Book.objects.get(id=4)
+>>> a.books.add(b)
+>>> b = Book.objects.get(id=5)
+>>> a.books.add(b)
+>>> b = Book.objects.get(id=3)
+>>> b.authors.all()
+<QuerySet [<Author: Author object>, <Author: Author object>, <Author: Author object>]>
+>>> b.authors.all().values()
+<QuerySet [{'id': 2, 'first_name': 'Speros', 'last_name': '', 'email': '', 'created_at': datetime.datetime(2018, 7, 12, 18, 36, 27, 964530, tzinfo=<UTC>), 'updated_at': datetime.datetime(2018, 7, 12, 18, 36, 27, 964530, tzinfo=<UTC>), 'notes': ''}, {'id': 3, 'first_name': 'John', 'last_name': '', 'email': '', 'created_at': datetime.datetime(2018, 7, 12, 18, 36, 31, 778553, tzinfo=<UTC>), 'updated_at': datetime.datetime(2018, 7, 12, 18, 36, 31, 778553, tzinfo=<UTC>), 'notes': ''}, {'id': 4, 'first_name': 'Jadee', 'last_name': '', 'email': '', 'created_at': datetime.datetime(2018, 7, 12, 18, 36, 38, 568380, tzinfo=<UTC>), 'updated_at': datetime.datetime(2018, 7, 12, 18, 36, 38, 568380, tzinfo=<UTC>), 'notes': ''}]>
+>>> b.authors.first().__dict__
+{'_state': <django.db.models.base.ModelState object at 0x009603D0>, 'id': 2, 'first_name': 'Speros', 'last_name': '', 'email': '', 'created_at': datetime.datetime(2018, 7, 12, 18, 36, 27, 964530, tzinfo=<UTC>), 'updated_at': datetime.datetime(2018, 7, 12, 18, 36, 27, 964530, tzinfo=<UTC>), 'notes': ''}
+>>> b.authors.remove(a)
+(4, {'book_authors.Author_books': 3, 'book_authors.Author': 1})
+>>> b = Book.objects.get(id=2)
+>>> a = Author.objects.get(id=5)
+>>> b.authors.add(a)
+>>> a = Author.objects.get(id=3)
+>>> a.books.all().values()
+<QuerySet [{'id': 1, 'name': 'C sharp', 'desc': '', 'created_at': datetime.datetime(2018, 7, 12, 18, 35, 42, 277034, tzinfo=<UTC>), 'updated_at': datetime.datetime(2018, 7, 12, 18, 35, 42, 277034, tzinfo=<UTC>)}, {'id': 2, 'name': 'Java', 'desc': '', 'created_at': datetime.datetime(2018, 7, 12, 18, 35, 49, 777596, tzinfo=<UTC>), 'updated_at': datetime.datetime(2018, 7, 12, 18, 35, 49, 777596, tzinfo=<UTC>)}, {'id': 3, 'name': 'Python', 'desc': '', 'created_at': datetime.datetime(2018, 7, 12, 18, 35, 53, 996280, tzinfo=<UTC>), 'updated_at': datetime.datetime(2018, 7, 12, 18, 35, 53, 996280, tzinfo=<UTC>)}, {'id': 4, 'name': 'PHP', 'desc': '', 'created_at': datetime.datetime(2018, 7, 12, 18, 35, 57, 918305, tzinfo=<UTC>), 'updated_at': datetime.datetime(2018, 7, 12, 18, 35, 57, 918351, tzinfo=<UTC>)}]>
+>>> a = Author.objects.get(id=2)
+>>> a.books.all().values()
+<QuerySet [{'id': 1, 'name': 'C sharp', 'desc': '', 'created_at': datetime.datetime(2018, 7, 12, 18, 35, 42, 277034, tzinfo=<UTC>), 'updated_at': datetime.datetime(2018, 7, 12, 18, 35, 42, 277034, tzinfo=<UTC>)}, {'id': 2, 'name': 'Java', 'desc': '', 'created_at': datetime.datetime(2018, 7, 12, 18, 35, 49, 777596, tzinfo=<UTC>), 'updated_at': datetime.datetime(2018, 7, 12, 18, 35, 49, 777596, tzinfo=<UTC>)}]>

@@ -1,0 +1,65 @@
+<html>
+
+<head>
+    <title>List of Users</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        .jumbotron {
+            max-width: 768px;
+            margin: 0 auto;
+        }
+        .footer {
+            display: flex;
+        }
+        .fill {
+            flex-grow: 1;
+        }
+        .user {
+            display: flex;
+        }
+        .user p:first-child {
+            margin-right: 24px;
+        }
+        .error {
+            color: red;
+        }
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div class='jumbotron'>
+        {% set messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <p class="{{ messages[0][0] }}">{{ messages[0][1] }}</p>
+        {% endif %}
+        <h3>These are all my users!</h3>
+        {% for user in all_users %}
+        <hr>
+        <div class='user'>
+            <p>Email:</p>
+            <p>{{ user.email }}</p>
+            <div class='fill'></div>
+            <form action='/delete' method="POST" autocomplete="off">
+                <input type="hidden" value="{{ user.email }}" name="email" />
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+        {% endfor %}
+        <hr>
+        <div class='footer'>
+            <div class='fill'></div>
+            <a href="/" class="btn btn-success active" role="button">Return</a>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

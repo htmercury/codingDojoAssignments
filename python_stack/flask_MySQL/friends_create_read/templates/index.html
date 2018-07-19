@@ -1,0 +1,74 @@
+<html>
+
+<head>
+    <title>Create and Read Friends</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        .jumbotron {
+            max-width: 768px;
+            margin: 0 auto;
+        }
+        .fill {
+            min-width: 200px;
+        }
+        .friend {
+            display: flex;
+        }
+        .friend div:first-child {
+            margin-right: 24px;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class='jumbotron'>
+        <h3>These are all my friends!</h3>
+        {% for friend in all_friends %}
+        <hr>
+        <div class='friend'>
+            <div>
+                <p>First Name:</p>
+                <p>Last Name:</p>
+                <p>Occupation:</p>
+            </div>
+            <div>
+                <p>{{ friend.first_name }}</p>
+                <p>{{ friend.last_name }}</p>
+                <p>{{ friend.occupation }}</p>
+            </div>
+        </div>
+        {% endfor %}
+        <hr>
+        <form action='/create_friend' method="POST">
+            <h3>Add a friend</h3>
+            {% set messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            <p class="{{ messages[0][0] }}">{{ messages[0][1] }}</p>
+            {% endif %}
+            <div class="form-group">
+                <label for="first_name">First Name</label>
+                <input type="text" class="form-control" name="first_name" value="{{ first_name }}" id="first_name" placeholder="Enter first name">
+            </div>
+            <div class="form-group">
+                <label for="last_name">Last Name</label>
+                <input type="text" class="form-control" name="last_name" value="{{ last_name }}" id="last_name" placeholder="Enter last name">
+            </div>
+            <div class="form-group">
+                <label for="occupation">Occupation</label>
+                <input type="text" class="form-control" name="occupation" value="{{ occupation }}" id="occupation" placeholder="Enter occupation">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

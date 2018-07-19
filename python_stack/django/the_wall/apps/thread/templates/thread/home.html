@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>The Wall</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <style>
+        nav > div p, a {
+            margin-right: 16px;
+        }
+        h4 {
+            font-weight: 300;
+            margin-top: 16px;
+        }
+
+        p, h5 {
+            font-weight: 300;
+        }
+
+        .form-control {
+            background-color: #cecece;
+        }
+
+        .post {
+            margin: 25px 0;
+        }
+
+        .message {
+            margin-left: 20px;
+            color: #11c8c0;
+            font-size: 18px;
+        }
+
+        .poster, .commenter {
+            margin-bottom: 2px;
+        }
+
+        .commenter {
+            margin-left: 40px;
+            font-size: 18px;
+        }
+
+        .comment, .comment_box {
+            margin-left: 60px;
+            color: #cbd0c5;
+        }
+
+        .submission {
+            display: flex;
+        }
+        
+        .fill {
+            flex-grow: 1;
+        }
+
+        .success {
+            color: green;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body class='bg-dark'>
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">Coding Dojo Wall</a>
+        {% for message in messages %}
+        <p class="{{ message.tags }}">{% if 'success' in message.tags %}{{ message }}{% endif %}</p>
+        {% endfor %}
+        <div class='row order-last'>
+            <a class='welcome'>Welcome {{ name }}</a>
+            <a href='/logout' class="text-primary">Log off</a>
+        </div>
+    </nav>
+    <div class='container'>
+        <form action='/post' method='POST'>
+            {% csrf_token %}
+            <div class="form-group">
+                <h4 class='text-light'>Post a message</h4>
+                <textarea name='message' class="form-control" rows="3"></textarea>
+            </div>
+            <div class='submission'>
+                <div class='fill'></div>
+                <button type="submit" class="btn btn-primary">Post</button>
+            </div>
+        </form>
+        {% for entry in dashboard %}
+            <div class='post'>
+                <h5 class='poster text-light'>{{ entry.message.poster__first_name }} {{ entry.message.poster__last_name }} - {{ entry.message.created_at|date:"F dS, Y f A" }}</h5>
+                <p class='message'>{{ entry.message.content }}</p>
+                {% for comment in entry.comments %}
+                <p class='commenter text-light'>{{ comment.commenter__first_name }} {{ comment.commenter__last_name }} - {{ comment.created_at|date:"F dS, Y f A" }}</p>
+                <p class='comment'>{{ comment.content }}</p>
+                {% endfor %}
+                <form class='comment_box' action='/{{ entry.message.id }}/comment' method='POST'>
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <h4 class='text-light'>Post a comment</h4>
+                        <textarea name='comment' class="form-control" rows="2"></textarea>
+                    </div>
+                <div class='submission'>
+                    <div class='fill'></div>
+                    <button type="submit" class="btn btn-secondary">Post</button>
+                </div>
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

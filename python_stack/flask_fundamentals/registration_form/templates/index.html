@@ -1,0 +1,61 @@
+<html>
+
+<head>
+    <title>Dojo Survey</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        .jumbotron {
+            max-width: 768px;
+            margin: 0 auto;
+        }
+        .error {
+            color:red;
+            display:block;
+        }
+        .success {
+            color: green;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class='jumbotron'>
+        <form action='/users' method="POST">
+            {% set messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            <p class="{{ messages[0][0] }}">{{ messages[0][1] }}</p>
+            {% endif %}
+            <div class="form-group">
+                <label for="first_name">First Name</label>
+                <input type="text" class="form-control" name="first_name" value="{{ first_name }}" id="first_name" placeholder="Enter first name">
+            </div>
+            <div class="form-group">
+                <label for="last_name">Last Name</label>
+                <input type="text" class="form-control" name="last_name" value="{{ last_name }}" id="last_name" placeholder="Enter last name">
+            </div>
+            <div class="form-group">
+                <label for="email_address">Email address</label>
+                <input type="text" class="form-control" name="email_address" value="{{ email_address }}" id="email_address" placeholder="Enter email">
+                <small name="emailHelp"  id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" name="password" id="password" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <label for="confirm_password">Confirm password</label>
+                <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
