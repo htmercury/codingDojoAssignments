@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Traveling</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <p>Play the game in the console.</p>
+</body>
+<script>
+    class area {
+        constructor(name) {
+            this.character = name;
+        }
+        greet() {
+            console.log(`bla bla bla this is ${this.character}'s greet!`)
+        }
+    }
+
+    let Heffalumps = new area('Heffalumps');
+    let Eeyore = new area('Eeyore');
+    let Kanga = new area('Kanga');
+    let Owl = new area('Owl');
+    let ChristopherRobin = new area('Christopher Robin');
+    let Rabbit = new area('Rabbit');
+    let Gopher = new area('Gopher');
+    let Piglet = new area('Piglet');
+    let WinnieThePooh = new area('Winnie The Pooh');
+    let Bees = new area('Bees');
+    let Tigger = new area('Tigger');
+
+    Heffalumps.west = Eeyore;
+    Eeyore.east = Heffalumps;
+    Eeyore.south = Kanga;
+    Kanga.noth = Eeyore;
+    Kanga.south = ChristopherRobin;
+    ChristopherRobin.north = Kanga;
+    ChristopherRobin.west = Owl;
+    ChristopherRobin.east = Rabbit;
+    ChristopherRobin.south = WinnieThePooh;
+    Owl.east = ChristopherRobin;
+    Owl.south = Piglet;
+    Rabbit.west = ChristopherRobin;
+    Rabbit.east = Gopher;
+    Rabbit.south = Bees;
+    WinnieThePooh.north = ChristopherRobin;
+    WinnieThePooh.west = Piglet;
+    WinnieThePooh.east = Bees;
+    WinnieThePooh.south = Tigger;
+    Piglet.north = Owl;
+    Piglet.east = WinnieThePooh;
+    Bees.north = Rabbit;
+    Bees.west = WinnieThePooh;
+    Gopher.west = Rabbit;
+    Tigger.north = WinnieThePooh;
+
+    let player = {
+        location: Tigger
+    }
+
+    function move(direction) {
+        if (player.location[direction.toLowerCase()] == undefined) {
+            console.log('You may not go that way!');
+        }
+        else {
+            player.location = player.location[direction.toLowerCase()];
+            console.log(`You are now at ${player.location.character}'s house`);
+            player.location.greet();
+        }
+    }
+</script>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Trivia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        p {
+            margin: 0;
+        }
+        #content {
+            padding-left: 20%;
+        }
+    </style>
+</head>
+<body>
+    <div class='fluid-container' id='content'>
+        <h3>Computer Science Trivia</h3>
+        <form>
+            <ol id='questions'>
+            </ol>
+            <button class="btn btn-primary" type="submit">Submit form</button>
+        </form>
+    </div> 
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
+    <script>
+        grabNamePromise();
+        function grabNamePromise() {
+            let data = new Promise(function(resolve, reject) {
+                $.get('https://opentdb.com/api.php?amount=5&category=18&difficulty=easy&type=multiple', function(data) {
+                    resolve(data.results);
+                })
+            })
+            data.then(function(data) {
+                generateQuestions(data);
+            })
+            data.catch(function() {
+                $('#replace-me-promise').attr('placeholder', 'failure');
+            })
+        }
+        function generateQuestions(data) {
+            let count = 1;
+            for (let entry of data) {
+                let template = 
+                `<li>
+                    ${entry.question}
+                    <div class="custom-control custom-radio">
+                        <input type="radio" id="ans${count}" name="question${count}" class="custom-control-input">
+                        <label class="custom-control-label" for="ans${count}">${entry.correct_answer}</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" id="ans${count + 1}" name="question${count}" class="custom-control-input">
+                        <label class="custom-control-label" for="ans${count + 1}">${entry.incorrect_answers[0]}</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" id="ans${count + 2}" name="question${count}" class="custom-control-input">
+                        <label class="custom-control-label" for="ans${count + 2}">${entry.incorrect_answers[1]}</label>
+                    </div>
+                    <div class="custom-control custom-radio">
+                        <input type="radio" id="ans${count + 3}" name="question${count}" class="custom-control-input">
+                        <label class="custom-control-label" for="ans${count + 3}">${entry.incorrect_answers[2]}</label>
+                    </div>
+                </li>`;
+                count += 4;
+                console.log(count);
+                $('#questions').append(template);
+            }
+        }
+    </script>
+</body>
+</html>

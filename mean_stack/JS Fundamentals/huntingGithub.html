@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Hunting Github</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<body>
+    <div class='jumbotron text-center'>
+        <h3>Hunting Github</h3>
+        <div class='form-group'>
+            <button type="button" class="btn btn-primary" onclick='grabName()'>Click me for Github name</button>
+        </div>
+        <input id='replace-me' class="form-control" type="text" placeholder="Github name will be placed here..." readonly>
+        <div class='form-group'>
+                <button type="button" class="btn btn-primary" onclick='grabNamePromise()'>Click me for Github name (Promise Version)</button>
+            </div>
+            <input id='replace-me-promise' class="form-control" type="text" placeholder="Github name will be placed here..." readonly>
+    </div>
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
+    <script>
+        function grabName() {
+            $.get('https://api.github.com/users/htmercury', function(data) {
+                $('#replace-me').attr('placeholder', data.login);
+            })
+        }
+        function grabNamePromise() {
+            var data = new Promise(function(resolve, reject) {
+                $.get('https://api.github.com/users/htmercury', function(data) {
+                    if (data.login == 'htmercury') {
+                        resolve(data);
+                    }
+                    else {
+                        reject(data);
+                    }
+                })
+            })
+            data.then(function(data) {
+                $('#replace-me-promise').attr('placeholder', data.login);
+            })
+            data.catch(function() {
+                $('#replace-me-promise').attr('placeholder', 'failure');
+            })
+        }
+    </script>
+</body>
+</html>
