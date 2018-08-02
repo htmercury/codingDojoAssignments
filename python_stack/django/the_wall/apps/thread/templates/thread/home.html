@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
     <style>
-        nav > div p, a {
+        nav > div p, nav a {
             margin-right: 16px;
         }
         h4 {
@@ -30,9 +30,10 @@
         }
 
         .message {
-            margin-left: 20px;
+            padding-left: 20px;
             color: #11c8c0;
             font-size: 18px;
+            display: inline-block;
         }
 
         .poster, .commenter {
@@ -42,6 +43,11 @@
         .commenter {
             margin-left: 40px;
             font-size: 18px;
+        }
+
+        .comment_container, .message_container {
+            display: flex;
+            align-items: center;
         }
 
         .comment, .comment_box {
@@ -66,7 +72,7 @@
 
 <body class='bg-dark'>
     <nav class="navbar navbar-light bg-light">
-        <a class="navbar-brand" href="#">Coding Dojo Wall</a>
+        <a class="navbar-brand" href="#">The Wall</a>
         {% for message in messages %}
         <p class="{{ message.tags }}">{% if 'success' in message.tags %}{{ message }}{% endif %}</p>
         {% endfor %}
@@ -89,10 +95,22 @@
         </form>
         {% for entry in dashboard %}
             <div class='post'>
-                <h5 class='poster text-light'>{{ entry.message.poster__first_name }} {{ entry.message.poster__last_name }} - {{ entry.message.created_at|date:"F dS, Y f A" }}</h5>
+                <div class='message_container'>
+                    <h5 class='poster text-light'>{{ entry.message.poster__first_name }} {{ entry.message.poster__last_name }} - {{ entry.message.created_at|date:"F dS, Y f A" }}</h5>
+                    <div class='fill'></div>
+                    {% if request.session.userid == entry.message.poster__id %}
+                    <a class='btn btn-danger btn-sm' role='button' href='delete/message/{{ entry.message.id }}'>Delete Message</a>
+                    {% endif %}
+                </div>
                 <p class='message'>{{ entry.message.content }}</p>
                 {% for comment in entry.comments %}
-                <p class='commenter text-light'>{{ comment.commenter__first_name }} {{ comment.commenter__last_name }} - {{ comment.created_at|date:"F dS, Y f A" }}</p>
+                <div class='comment_container'>
+                    <p class='commenter text-light'>{{ comment.commenter__first_name }} {{ comment.commenter__last_name }} - {{ comment.created_at|date:"F dS, Y f A" }}</p>
+                    <div class='fill'></div>
+                    {% if request.session.userid == comment.commenter__id %}
+                    <a class='btn btn-danger btn-sm' role='button' href='delete/comment/{{ comment.id }}'>Delete Comment</a>
+                    {% endif %}
+                </div>
                 <p class='comment'>{{ comment.content }}</p>
                 {% endfor %}
                 <form class='comment_box' action='/{{ entry.message.id }}/comment' method='POST'>

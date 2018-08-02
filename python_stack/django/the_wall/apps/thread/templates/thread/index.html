@@ -10,6 +10,9 @@
         input {
             margin: 0.5rem 0;
         }
+        h4 {
+            text-align: center;
+        }
         .content {
             display: flex;
             justify-content: space-evenly;
@@ -30,10 +33,11 @@
     </style>
 </head>
 
-<body>
+<body class='bg-dark'>
     <div class='content'>
         <div class='jumbotron'>
             <form action='/register' method="POST" autocomplete=off>
+                <h4>Register!</h4>
                 {% csrf_token %}
                 {% for message in messages %}
                 <p class="{{ message.tags }}">{% if 'first_name' in message.tags %}{{ message }}{% endif %}</p>
@@ -53,15 +57,18 @@
                 {% for message in messages %}
                 <p class="{{ message.tags }}">{% if 'password' in message.tags %}{{ message }}{% endif %}</p>
                 {% endfor %}
+                <div class="form-group">
                 <label for="password_registration">Password</label>
-                <input type="password" class="form-control" name="password" id="password_registration" placeholder="Password">
-                <label for="confirm_password">Confirm password</label>
-                <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Password">
+                    <input type="password" class="form-control" name="password" id="password_registration" placeholder="Password">
+                    <label for="confirm_password">Confirm password</label>
+                    <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Password">
+                </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
         <div class='jumbotron'>
             <form action='/login' method="POST">
+                <h4>Sign in!</h4>
                 {% csrf_token %}
                 {% for message in messages %}
                 <p class="{{ message.tags }}">{% if 'login' in message.tags %}{{ message }}{% endif %}</p>

@@ -7,13 +7,13 @@ import bcrypt
 
 def index(request):
     if 'userid' in request.session:
-        messages = Message.objects.all().values('id','poster__first_name', 'poster__last_name', 'content', 'created_at')
+        messages = Message.objects.all().values('id','poster__id','poster__first_name', 'poster__last_name', 'content', 'created_at').order_by('-created_at')
         comments = Comment.objects
         dashboard = []
         for message in messages:
             content = {
                 'message':message,
-                'comments':comments.filter(message_id=message['id']).values('commenter__first_name','commenter__last_name','content','created_at')
+                'comments':comments.filter(message_id=message['id']).values('id','commenter__id','commenter__first_name','commenter__last_name','content','created_at')
             }
             dashboard.append(content)
         u = User.objects.get(id = request.session['userid'])
@@ -103,4 +103,16 @@ def comment(request, message_id):
             c.commenter = commenter
             c.message = message
             c.save()
+    return redirect('/')
+
+def delete_message(request, message_id):
+    m = Message.objects.get(id=message_id)
+    if (m.poster_id == request.session['userid']):
+        m.delete()
+    return redirect('/')
+
+def delete_comment(request, comment_id):
+    c = Comment.objects.get(id=comment_id)
+    if (c.commenter_id == request.session['userid']):
+        c.delete()
     return redirect('/')

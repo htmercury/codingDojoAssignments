@@ -124,5 +124,7 @@ pip-selfcheck.json
 
 ./python_stack/myEnvironments/
 
+node_modules
+
 
 # End of https://www.gitignore.io/api/python,virtualenv
