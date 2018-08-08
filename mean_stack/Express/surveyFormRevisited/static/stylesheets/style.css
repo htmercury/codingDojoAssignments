@@ -1,0 +1,28 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+
+h3 {
+    text-align: center;
+}
+
+p {
+    display: inline-block;
+}
+
+.fill {
+    flex-grow: 1;
+}
+
+.survey {
+    width: 400px;
+}
+
+.msg-container {
+    padding: 20px;
+    background-color: #b6d7a8;
+    margin: 10px 0;
+    border-radius: 5px;
+    display: none;
+}

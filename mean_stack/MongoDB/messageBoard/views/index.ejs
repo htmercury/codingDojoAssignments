@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>The Dojo Message Board</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <style>
+        nav > div p, nav a {
+            margin-right: 16px;
+        }
+        h4 {
+            font-weight: 300;
+            margin-top: 16px;
+        }
+
+        p, h5 {
+            font-weight: 300;
+        }
+
+        .form-control {
+            background-color: #cecece;
+        }
+
+        .post {
+            margin: 25px 0;
+        }
+
+        .message {
+            padding-left: 20px;
+            color: #11c8c0;
+            font-size: 18px;
+            display: inline-block;
+        }
+
+        .poster, .commenter {
+            margin-bottom: 2px;
+        }
+
+        .commenter {
+            margin-left: 40px;
+            font-size: 18px;
+        }
+
+        .comment_container, .message_container {
+            display: flex;
+            align-items: center;
+        }
+
+        .comment, .comment_box {
+            margin-left: 60px;
+            color: #cbd0c5;
+        }
+
+        .submission {
+            display: flex;
+        }
+        
+        .fill {
+            flex-grow: 1;
+        }
+
+        .success {
+            color: green;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body class='bg-dark'>
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">The Dojo Message Board</a>
+        <div class='row order-last'>
+            <a class='welcome'>Welcome Person</a>
+            <a href='#' class="text-primary">Log off</a>
+        </div>
+    </nav>
+    <div class='container'>
+        <form action='/post' method='POST' autocomplete="off">
+            <div class="form-group">
+                <h4 class='text-light'>Post a message</h4>
+                <label class='text-light' for="name">Name:</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="Enter name">
+                <label class='text-light' for="message">Message:</label>
+                <textarea id="message" name='message' class="form-control" rows="3"></textarea>
+            </div>
+            <div class='submission'>
+                <div class='fill'></div>
+                <button type="submit" class="btn btn-primary">Post</button>
+            </div>
+        </form>
+        <% for (let post of posts) { %>
+            <div class='post'>
+                <div class='message_container'>
+                    <h5 class='poster text-light'><%= post.name %> - <%= post.createdAt %></h5>
+                    <div class='fill'></div>
+                </div>
+                <p class='message'><%= post.message %></p>
+                <% for (let comment of post.comments) { %>
+                <div class='comment_container'>
+                    <p class='commenter text-light'><%= comment.name %> - <%= comment.createdAt %></p>
+                    <div class='fill'></div>
+                </div>
+                <p class='comment'><%= comment.comment %></p>
+                <% } %>
+                <form class='comment_box' action='/comment/<%= post._id %>' method='POST' autocomplete="off">
+                    <div class="form-group">
+                        <h4 class='text-light'>Post a comment</h4>
+                        <label class='text-light' for="name">Name:</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter name">
+                        <label class='text-light' for="comment">Comment:</label>
+                        <textarea id="comment" name='comment' class="form-control" rows="2"></textarea>
+                    </div>
+                <div class='submission'>
+                    <div class='fill'></div>
+                    <button type="submit" class="btn btn-secondary">Post</button>
+                </div>
+                </form>
+            </div>
+        <% } %>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

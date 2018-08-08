@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Mongoose Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <style>
+        .quote {
+            font-size: 24px;
+            margin: 0;
+        }
+        .card {
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class='jumbotron'>
+        <div class='container'>
+            <h5>Porcupines</h5>
+            <div class="row">
+            <% for (let porcupine of porcupines) { %>
+                <div class="card bg-light" style="width: 18rem;">
+                    <img class="card-img-top" src="/porcupine.png" alt="porcupine">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= porcupine.name %></h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Age: <%= porcupine.age %></h6>
+                        <p class="card-text">Favorite Spot: <%= porcupine.favoriteSpot %></p>
+                        <a href="/porcupines/<%=porcupine._id%>" class="btn btn-dark">Show</a>
+                        <a href="/porcupines/edit/<%=porcupine._id%>" class="btn btn-warning">Edit</a>
+                        <a href="/porcupines/destroy/<%=porcupine._id%>" class="btn btn-danger">Delete</a>
+                        <p class="card-text"><small class="text-muted">Created at <%= porcupine.createdAt %></small></p>
+                    </div>
+                </div>
+            <% } %>
+            </div>
+        </div>
+        <a href="/porcupines/new" role="button" class="btn btn-primary">Create a porcupine!</a>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
