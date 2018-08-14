@@ -1,0 +1,46 @@
+ul {
+    padding-left: 40%;
+}
+li {
+    text-align: left;
+}
+form {
+    max-width: 300px;
+    min-width: 250px;
+}
+.container {
+    padding: 40px;
+}
+.content {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 320px;
+    margin: 20px;
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid black;
+}
+.content h6, .content h5 {
+    margin: 0;
+    margin-bottom: 10px;
+}
+.fill {
+    flex-grow: 1;
+}
+.options {
+    display: flex;
+    flex-direction: column;
+}
+.options a {
+    margin: 2px 0;
+}
+.task {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.panel {
+    display: flex;
+    justify-content: space-evenly;
+}

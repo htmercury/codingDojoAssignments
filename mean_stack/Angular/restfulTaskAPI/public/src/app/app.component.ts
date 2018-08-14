@@ -19,7 +19,11 @@ interface Task {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'MEAN';
+  title = 'Restful Tasks API';
+  tasks = [];
+  newTask = {title: '', description: ''};
+  task = {title: '', description: ''};
+  edit = false;
 
   constructor(private _httpService: HttpService) {
 
@@ -29,20 +33,47 @@ export class AppComponent implements OnInit {
     this.getTasksFromService();
   }
 
+  
+  editTask(id) {
+    this.getTaskFromService(id);
+    this.edit = true;
+  }
+
+  createTask(data) {
+    let tempObservable = this._httpService.createTask(this.newTask);
+    tempObservable.subscribe((res: Response) => {
+      this.getTasksFromService();
+      this.newTask = {title: '', description: ''};
+    });
+  }
+
+  deleteTask(id) {
+    let tempObservable = this._httpService.deleteTask(id);
+    tempObservable.subscribe((res: Response) => {
+      this.getTasksFromService();
+    });
+  }
+
+  changeTask() {
+    let tempObservable = this._httpService.changeTask(this.task);
+    tempObservable.subscribe((res: Response) => {
+      this.getTasksFromService();
+    });
+  }
+
   getTasksFromService() {
     let tempObservable = this._httpService.getTasks();
     tempObservable.subscribe((res: Response) => {
       console.log('Got our tasks!', res);
-      for (let task of res.data) {
-        this.getTaskFromService(task._id);
-      }
+      this.tasks = res.data;
     });
   }
 
-  getTaskFromService(url) {
-    let observable = this._httpService.getTask(url);
-    observable.subscribe(data => {
-      console.log(data);
+  getTaskFromService(id) {
+    let observable = this._httpService.getTask(id);
+    observable.subscribe((res : any) => {
+      console.log('Got a task!', res);
+      this.task = res.data;
     })
   }
 }

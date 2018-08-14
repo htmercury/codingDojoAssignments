@@ -1,0 +1,32 @@
+<div class='jumbotron'>
+  <div class='inventory'>
+    <p>Your Gold:</p>
+    <input class="form-control" id="disabledInput" type="text" value='{{gold}}' disabled>
+  </div>
+  <div class='maps'>
+    <div>
+      <h5>Farm</h5>
+      <h6>(earns 2-5 golds)</h6>
+      <button type="submit" class="btn btn-success mb-2" (click)='processMoneyFromService(5,2,"Farm")'>Find Gold!</button>
+    </div>
+    <div>
+      <h5>Cave</h5>
+      <h6>(earns 5-10 golds)</h6>
+      <button type="submit" class="btn btn-success mb-2" (click)='processMoneyFromService(10,5,"Cave")'>Find Gold!</button>
+    </div>
+    <div>
+      <h5>House</h5>
+      <h6>(earns 7-15 golds)</h6>
+      <button type="submit" class="btn btn-success mb-2" (click)='processMoneyFromService(15,7,"House")'>Find Gold!</button>
+    </div>
+    <div>
+      <h5>Casino</h5>
+      <h6>(earns/takes 0-100 golds)</h6>
+      <button type="submit" class="btn btn-success mb-2" (click)='processMoneyFromService(100,-100,"Casino")'>Find Gold!</button>
+    </div>
+  </div>
+  <p>Activities:</p>
+  <div id='log'>
+    <p *ngFor='let log of logs'>{{ log }}</p>
+  </div>
+</div>

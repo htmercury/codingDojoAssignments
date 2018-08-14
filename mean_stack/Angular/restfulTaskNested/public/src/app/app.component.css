@@ -1,0 +1,16 @@
+ul {
+    padding-left: 40%;
+}
+li {
+    text-align: left;
+}
+.content {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 60%;
+    margin: 20px auto;
+}
+.fill {
+    flex-grow: 1;
+}

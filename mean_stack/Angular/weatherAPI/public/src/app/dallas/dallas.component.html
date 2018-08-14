@@ -1,0 +1,13 @@
+<div style="text-align:center">
+  <h2>Dallas, TX</h2>
+  <div class='container'>
+    <div class='info'>
+      <h6 *ngIf='weather'>Humidity: {{ weather.main.humidity }}</h6>
+      <h6 *ngIf='weather'>Temperature (Average): {{ weather.main.temp }}</h6>
+      <h6 *ngIf='weather'>Temperature (High): {{ weather.main.temp_max }}</h6>
+      <h6 *ngIf='weather'>Temperature (Low): {{ weather.main.temp_min }}</h6>
+      <h6 *ngIf='weather'>Status: {{ weather.weather[0].description }}</h6>
+    </div>
+    <img alt='dallas' src='/assets/img/dallas.jpg'>
+  </div>
+</div>

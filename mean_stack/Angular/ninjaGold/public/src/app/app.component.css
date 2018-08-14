@@ -1,0 +1,46 @@
+h6 {
+    font-weight: 400;
+}
+p {
+    white-space: nowrap;
+    display: inline-block;
+    margin: 5px;
+}
+button {
+    width: 150px;
+    margin: 16px 0;
+}
+#log {
+    margin: 10px;
+    height: 128px;
+    border: 2px solid black;
+    overflow-y:auto
+}
+#log p {
+    display: block;
+    padding-left: 16px;
+}
+.jumbotron {
+    height: 100vh;
+    margin: 0;
+}
+.form-control {
+    width: 100px;
+    display: inline-block;
+}
+.maps {
+    display: flex;
+    justify-content: space-evenly;
+}
+.maps div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    margin: 10px;
+    min-width: 175px;
+    min-height: 175px;
+    flex-grow: 1;
+    height: auto;
+}

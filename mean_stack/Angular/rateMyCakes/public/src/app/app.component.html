@@ -1,0 +1,39 @@
+<div class='container'>
+  <h2>Rate my cakes</h2>
+  <div class='content'>
+    <form class='cake-form' autocomplete="off" (submit)='createCakeFromService()'>
+      <small id="emailHelp" class="form-text text-muted">Submit a cake to be rated</small>
+      <hr/>
+      <div class='form-group'>
+        <label for="baker-name">Baker name:</label>
+        <input type="text" class="form-control" id="baker-name" name="baker_name"  placeholder="Charlie Brown" [(ngModel)]='newCake.baker_name'>
+        <label for="image-url">Image url:</label>
+        <input type="text" class="form-control" id="image-url" name="image_url"  placeholder="www.example.com/image" [(ngModel)]='newCake.image_url' >
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <div class='fill'></div>
+    <div class='rating-section'>
+      <div *ngFor='let cake of cakes' class='cake-group'>
+        <img alt='cake' src='{{ cake.image_url }}' (click)='getCakeFromService(cake._id)'>
+        <form class='rating-form' autocomplete="off" (submit)='createRatingFromService(cake._id)'>
+          <div class='form-group'>
+            <select name='rating' class="form-control" id="exampleFormControlSelect1" [(ngModel)]='newRatings[cake._id].rating'>
+              <option value=1>1 stars</option>
+              <option value=2>2 stars</option>
+              <option value=3>3 stars</option>
+              <option value=4>4 stars</option>
+              <option value=5>5 stars</option>
+            </select>
+          </div>
+          <div class='form-group'>
+            <textarea class="form-control" name="comment" rows="2" placeholder="Type your comment here" [(ngModel)]='newRatings[cake._id].comment'></textarea>
+          </div>
+          <button type="Rate!" class="btn btn-secondary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <app-cake *ngIf="selectedCake" [cakeToShow]="selectedCake"></app-cake>
+</div>
+
