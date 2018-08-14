@@ -1,0 +1,20 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+  <h1>
+    {{ title }}
+  </h1>
+  
+  <a class="waves-effect btn-large waves-light purple btn" (click)="getTasksFromService()">get all tasks</a>
+
+  <div class='content' *ngFor="let task of tasks">
+    <h6>{{ task.title }}</h6>
+    <div class='fill'></div>
+    <a class="btn-floating btn-large waves-effect waves-light" (click)="getTaskFromService(task._id)">show</a>
+  </div>
+
+  <div *ngIf="task">
+    <h5>{{ task.title }}</h5>
+    <p>{{ task.description }}</p>
+  </div>
+
+</div>
