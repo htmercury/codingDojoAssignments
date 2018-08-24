@@ -1,0 +1,13 @@
+<div class='container-fluid'>
+  <h2>Mine ShintoCoin</h2>
+  <ul class='list-unstyled'>
+    <li>Here you can mine ShintoCoins by being the first to solve the algorith:</li>
+    <li>What is the 7th Fibonacci sequence number?</li>
+  </ul>
+  <form class='form-inline' (submit)='checkAns()' autocomplete="off">
+    <div class='form-group mb-2 mx-sm-3'>
+      <input type="text" class="form-control" name='number' placeholder="Number" [(ngModel)]='num'>
+    </div>
+    <button type="submit" class="btn btn-secondary mb-2">Mine</button>
+  </form>
+</div>

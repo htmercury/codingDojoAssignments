@@ -1,0 +1,20 @@
+<a [routerLink]="['/']">Home</a>
+<p class='text-info'>
+  Add a new author:
+</p>
+
+<form autocomplete="off" (submit)='createAuthorFromService()'>
+  <div class='form-group'>
+    <p class='error'>{{ error }}</p>
+    <label for="name">Name</label>
+    <input type="text" class="form-control" name="name" placeholder="Enter name" [(ngModel)]='name'>
+  </div>
+  <div class='btn-toolbar' role="toolbar">
+    <div class='btn-group mr-2' role='group'>
+      <button type='button' [routerLink]="['/']" class='btn btn-primary'>Cancel</button>
+    </div>
+    <div class='btn-group mr-2' role='group'>
+      <button type='submit' class='btn btn-primary'>Submit</button>
+    </div>
+  </div>
+</form>

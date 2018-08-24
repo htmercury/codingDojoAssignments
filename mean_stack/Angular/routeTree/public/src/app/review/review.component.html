@@ -1,0 +1,12 @@
+<div style="text-align:center; border: 3px solid blue; border-radius: 10px; padding: 100px;">
+  <h2>Review tree</h2>
+  <h6>The review component has an blue border.</h6>
+  <h6>It's here because /review uses the router outlet in the root component.</h6>
+  <a [routerLink]='["details", 321]'>Details</a>
+  <br/>
+  <a [routerLink]='["author", "bob"]'>Author</a>
+  <br/>
+  <a [routerLink]='["all", "4allstuff5"]'>All Reviews</a>
+  <router-outlet></router-outlet>
+
+</div>

@@ -1,0 +1,12 @@
+<div style="text-align:center; border: 3px solid red; border-radius: 10px; padding: 100px;">
+  <h2>Product tree</h2>
+  <h6>The product component has an red border.</h6>
+  <h6>It's here because /product uses the router outlet in the root component.</h6>
+  <a [routerLink]='["details", 123]'>Details</a>
+  <br/>
+  <a [routerLink]='["brand", "thing"]'>Brand</a>
+  <br/>
+  <a [routerLink]='["category", "nap"]'>Category</a>
+  <router-outlet></router-outlet>
+
+</div>

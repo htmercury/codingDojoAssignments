@@ -1,0 +1,23 @@
+<div class='container-fluid'>
+  <h2>Browse the Ledger</h2>
+  <p>Here you can browse all ShintoCoin transactions.</p>
+  <h4>ShintoCoin Ledger</h4>
+  <table class="table table-striped">
+    <thead class='thead-dark'>
+      <tr>
+        <th scope="col">Action</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Value</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor='let key of Object.keys(transactions)'>
+        <td>{{ transactions[key].action }}</td>
+        <td>{{ transactions[key].amount }}</td>
+        <td>{{ transactions[key].value }}</td>
+        <td><a [routerLink]="['/transaction', key]" role='button' class='btn btn-seconday'>Details</a></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

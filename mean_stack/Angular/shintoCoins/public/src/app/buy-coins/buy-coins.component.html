@@ -1,0 +1,13 @@
+<div class='container-fluid'>
+  <h2>Buy ShintoCoins</h2>
+  <ul class='list-unstyled'>
+    <li>Current ShintoCoin Value: {{ value }}</li>
+    <li>Number of ShintoCoins Owned: {{ owned }} </li>
+  </ul>
+  <form class='form-inline' (submit)='purchase()' autocomplete="off">
+    <div class='form-group mb-2 mx-sm-3'>
+      <input type="text" class="form-control" name='number' placeholder="Number" [(ngModel)]='num'>
+    </div>
+    <button type="submit" class="btn btn-secondary mb-2">Buy</button>
+  </form>
+</div>
