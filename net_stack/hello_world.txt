@@ -1,0 +1,51 @@
+C:\Users\kawon\Documents\Git\codingDojoAssignments\net_stack\FirstCSharp>dotnet --version
+2.1.4
+
+C:\Users\kawon\Documents\Git\codingDojoAssignments\net_stack>mkdir FirstCSharp
+
+C:\Users\kawon\Documents\Git\codingDojoAssignments\net_stack>cd FirstCSharp
+
+C:\Users\kawon\Documents\Git\codingDojoAssignments\net_stack\FirstCSharp>dotnet new console
+
+Welcome to .NET Core!
+---------------------
+Learn more about .NET Core @ https://aka.ms/dotnet-docs. Use dotnet --help to see available commands or go to https://aka.ms/dotnet-cli-docs.
+
+Telemetry
+--------------
+The .NET Core tools collect usage data in order to improve your experience. The data is anonymous and does not include command-line arguments. The data is collected by Microsoft and shared with the community.
+You can opt out of telemetry by setting a DOTNET_CLI_TELEMETRY_OPTOUT environment variable to 1 using your favorite shell.
+You can read more about .NET Core tools telemetry @ https://aka.ms/dotnet-cli-telemetry.
+Getting ready...
+The template "Console Application" was created successfully.
+
+Processing post-creation actions...
+Running 'dotnet restore' on C:\Users\kawon\Documents\Git\codingDojoAssignments\net_stack\FirstCSharp\FirstCSharp.csproj...
+  Restoring packages for C:\Users\kawon\Documents\Git\codingDojoAssignments\net_stack\FirstCSharp\FirstCSharp.csproj...
+  Generating MSBuild file C:\Users\kawon\Documents\Git\codingDojoAssignments\net_stack\FirstCSharp\obj\FirstCSharp.csproj.nuget.g.props.
+  Generating MSBuild file C:\Users\kawon\Documents\Git\codingDojoAssignments\net_stack\FirstCSharp\obj\FirstCSharp.csproj.nuget.g.targets.
+  Restore completed in 335.12 ms for C:\Users\kawon\Documents\Git\codingDojoAssignments\net_stack\FirstCSharp\FirstCSharp.csproj.
+
+Restore succeeded.
+
+
+C:\Users\kawon\Documents\Git\codingDojoAssignments\net_stack\FirstCSharp>code .
+
+C:\Users\kawon\Documents\Git\codingDojoAssignments\net_stack\FirstCSharp>dotnet build
+Microsoft (R) Build Engine version 15.5.180.51428 for .NET Core
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+  Restore completed in 13.98 ms for C:\Users\kawon\Documents\Git\codingDojoAssignments\net_stack\FirstCSharp\FirstCSharp.csproj.
+  FirstCSharp -> C:\Users\kawon\Documents\Git\codingDojoAssignments\net_stack\FirstCSharp\bin\Debug\netcoreapp2.0\FirstCSharp.dll
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:01.04
+
+C:\Users\kawon\Documents\Git\codingDojoAssignments\net_stack\FirstCSharp>dotnet bin\Debug\netcoreapp2.0\FirstCSharp.dll
+Hello World!
+
+C:\Users\kawon\Documents\Git\codingDojoAssignments\net_stack\FirstCSharp>dotnet run
+Hello World!
