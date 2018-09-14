@@ -1,0 +1,54 @@
+<div class='options'>
+    <h2>Add A New Trail</h2>
+    <div class='fill'></div>
+    <a href='/'>Go Home</a>
+</div>
+
+@model TrailModel
+<form autocomplete="off" asp-action="Create" asp-controller="Home" method="POST">
+    <div class='fields-container'>
+        <span asp-validation-for="Name"></span>
+        <div class="form-group row">
+            <label asp-for="Name" class="col-sm-5 col-form-label">Trail Name:</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" asp-for="Name" placeholder="Trail Name">
+            </div>
+        </div>
+        <span asp-validation-for="Description"></span>
+        <div class="form-group row">
+            <label asp-for="Description" class="col-sm-5 col-form-label">Description:</label>
+            <div class="col-sm-7">
+                <textarea type="text" class="form-control" asp-for="Description" rows="3"></textarea>
+            </div>
+        </div>
+        <span asp-validation-for="Length"></span>
+        <div class="form-group row">
+            <label asp-for="Length" class="col-sm-5 col-form-label">Trail Length (mi):</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" asp-for="Length" placeholder="Trail Length">
+            </div>
+        </div>
+        <span asp-validation-for="ElevationChange"></span>
+        <div class="form-group row">
+            <label asp-for="ElevationChange" class="col-sm-5 col-form-label">Elevation Change (ft):</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" asp-for="ElevationChange" placeholder="Elevation Change">
+            </div>
+        </div>
+        <span asp-validation-for="Longitude"></span>
+        <span asp-validation-for="Latitude"></span>
+        <div class="form-group row">
+            <label class="col-sm-5 col-form-label">Longitude & Latitude:</label>
+            <div class="col-sm-7 row">
+                <div class="col">
+                    <input type="text" asp-for="Longitude" class="form-control" placeholder="Longitude">
+                </div>
+                <div class="col">
+                    <input type="text" asp-for="Latitude" class="form-control" placeholder="Latitude">
+                </div>
+            </div>
+        </div>
+    </div>
+    <button type="submit" id="create-record" class="btn btn-primary">Create Record!</button>
+
+</form>

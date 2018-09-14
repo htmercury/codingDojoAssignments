@@ -1,0 +1,17 @@
+dotnet add package Dapper
+dotnet add package MySql.Data -v 8.0.9-*
+
+dotnet add package MySql.Data.EntityFrameworkCore -v 8.0.11
+
+<ItemGroup>
+  <DotNetCliToolReference Include="Microsoft.DotNet.Watcher.Tools" Version="2.0.2" />
+</ItemGroup>
+
+
+services.AddDbContext<MyContext>(options => options.UseMySQL(Configuration["DBInfo:ConnectionString"]));
+
+"DBInfo":
+    {
+        "Name": "MySQLconnect",
+        "ConnectionString": "server=localhost;userid=root;password=root;port=3306;database=mydb;SslMode=None"
+    }

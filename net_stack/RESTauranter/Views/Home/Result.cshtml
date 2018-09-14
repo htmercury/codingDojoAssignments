@@ -1,0 +1,14 @@
+<div class='container-fluid'>
+    <h3>Reviews</h3>
+    @{
+        foreach(ReviewModel review in ViewBag.Reviews)
+        {
+            <div class='review'>
+                <h4>Review for @review.RestaurantName – @review.Stars star</h4>
+                <h6>Reviewer: @review.ReviewerName, @review.Date.ToString("MMMM dd, yyyy")</h6>
+                <p>@review.Review</p>
+            </div>
+            <hr />
+        }
+    }
+</div>

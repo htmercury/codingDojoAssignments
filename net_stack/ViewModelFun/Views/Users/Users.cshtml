@@ -1,0 +1,9 @@
+﻿@model ViewModelFun.Models.Users
+
+<h1 class="text-center">Here are some Users!</h1>
+@{
+    foreach(User name in Model.names)
+    {
+        <p>@name.FirstName @name.LastName</p>
+    }
+}

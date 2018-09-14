@@ -1,0 +1,28 @@
+<div class='options'>
+    <h2>@ViewBag.Trail.Name</h2>
+    <div class='fill'></div>
+    <a href='/'>Go Home</a>
+</div>
+<br/>
+<div class='trail-content'>
+    <div>
+        <h4>Description:</h4>
+        <div class='container-fluid'>
+            <p class='content'>@ViewBag.Trail.Description</p>
+        </div>
+        <h4>Trail Length:</h4>
+        <div class='container-fluid'>
+            <p class='content'>@ViewBag.Trail.Length miles</p>
+        </div>
+        <h4>Elevation Change:</h4>
+        <div class='container-fluid'>
+            <p class='content'>@ViewBag.Trail.ElevationChange feet</p>
+        </div>
+    </div>
+    <div class='fill'></div>
+    <div>
+        <img src='~/images/trail.png'>
+        <p class='content'>Longitude – @ViewBag.Trail.Longitude &deg;N</p>
+        <p class='content'>Latitude – @ViewBag.Trail.Latitude &deg;W</p>
+    </div>
+</div>

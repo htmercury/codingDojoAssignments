@@ -1,0 +1,16 @@
+<div class='container-fluid'>
+    @{
+        if (ViewBag.Ninja.Description == null)
+        {
+            ViewBag.Ninja.Description = "N/A";
+        }
+    }
+    <h3>Name: <span class='ninja-info'>@ViewBag.Ninja.Name</span></h3>
+    <h4>Ninja Level - <span class='ninja-info'>@ViewBag.Ninja.Level</span></h4>
+    <h4>Description: <span class='ninja-info'>@ViewBag.Ninja.Description</span></h4>
+    <h4>Current Dojo: <span class='ninja-info'><a href='/Dojo/@ViewBag.Dojo.Id'>@ViewBag.Dojo.Name</a></span></h4>
+</div>
+
+<div class='container-fluid'>
+    <a href='/'>root</a>
+</div>

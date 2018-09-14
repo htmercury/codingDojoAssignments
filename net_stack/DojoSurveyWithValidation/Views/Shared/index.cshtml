@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Dojo Survey</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <div class='survey'>
+        @model User
+        <form asp-action='result' asp-controller='Result' method='post' autocomplete="off">
+            <span asp-validation-for="Name"></span>
+            <div class="form-group">
+                <label asp-for="Name"><span>Your Name:</span></label>
+                <input type='text' asp-for="Name" class="form-control" placeholder="Name">
+            </div>
+            <span asp-validation-for="Location"></span>
+            <div class="form-group">
+                <label asp-for="Location"><span>Dojo Location:</span></label>
+                <select class="form-control" asp-for="Location">
+                    <option value="San Jose">San Jose</option>
+                    <option value="Seattle">Seattle</option>
+                    <option value="Los Angeles">Los Angeles</option>
+                    <option value="Dallas">Dallas</option>
+                    <option value="East Bay">East Bay</option>
+                </select>
+            </div>
+            <span asp-validation-for="Language"></span>
+            <div class="form-group">
+                <label asp-for="Language"><span>Favorite Language:</span></label>
+                <select class="form-control" asp-for="Language">
+                    <option value="Python">Python</option>
+                    <option value="C#">C#</option>
+                    <option value="JavaScript">JavaScript</option>
+                    <option value="C/C++">C/C++</option>
+                    <option value="PHP">PHP</option>
+                </select>
+            </div>
+            <span asp-validation-for="Comment"></span>
+            <div class="form-group">
+                <label asp-for="Comment"><span>Comment (optional):</span></label>
+                <textarea class="form-control" rows="3" asp-for="Comment"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

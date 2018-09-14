@@ -1,0 +1,42 @@
+<div class='container-fluid content'>
+    <div class='registered-group'>
+        <h3>All Dojos</h3>
+        <table class='table table-striped'>
+            <thead class='thead-dark'>
+                <th scope='col'>Dojo Name</th>
+            </thead>
+            <tbody>
+                @{
+                    foreach (DojoModel dojo in ViewBag.Dojos)
+                    {               
+                        <tr>
+                            <td><a href='/Dojo/@dojo.Id'>@dojo.Name</a></td>   
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class='register-group'>
+        <h3>Register a Dojo</h3>
+        @model DojoModel
+        <form asp-action='CreateDojo' asp-controller='Home' method="post">
+            <div class='form-group'>
+                <span asp-validation-for="Name"></span>
+                <label asp-for="Name">Dojo Name</label>
+                <input type="text" class="form-control" asp-for="Name" placeholder="Name">
+                <span asp-validation-for="Location"></span>
+                <label asp-for="Location">Dojo Location</label>
+                <input type="text" class="form-control" asp-for="Location" placeholder="Location">
+                <span asp-validation-for="Description"></span>
+                <label asp-for="Description">Additional Dojo Information</label>
+                <textarea type="text" class="form-control" asp-for="Description" rows="3"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Add</button>
+        </form>
+    </div>
+</div>
+
+<div class='container-fluid'>
+    <a href='/'>root</a>
+</div>

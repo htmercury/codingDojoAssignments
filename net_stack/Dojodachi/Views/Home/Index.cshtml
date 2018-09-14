@@ -1,0 +1,19 @@
+﻿@model PetModel
+<div id='dachi-container'>
+    <div id='dachi-header'>
+        <h4>Fullness: <span id='pet-full'>@Model.Fullness</span></h4>
+        <h4>Happiness: <span id='pet-happ'>@Model.Happiness</span></h4>
+        <h4>Meals: <span id='pet-meals'>@Model.Meals</span></h4>
+        <h4>Energy: <span id='pet-energy'>@Model.Energy</span></h4>
+    </div>
+    <div id='dachi-content'>
+        <img src='~/images/pet.png'>
+        <h4 id='msg'>Interact with your dojodachi now!</h4>
+    </div>
+    <div id='dachi-options'>
+        <button id='feed' class='btn btn-primary'>Feed</button>
+        <button id='play' class='btn btn-primary'>Play</button>
+        <button id='work' class='btn btn-primary'>Work</button>
+        <button id='sleep' class='btn btn-primary'>Sleep</button>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+﻿<div class='jumbotron'>
+    @model QuoteModel
+    <form asp-action="" asp-controller="Home" method="POST" autocomplete="off">
+        <div class='form-group'>
+            <label asp-for="Name"><span>Your name:</span></label>
+            <span asp-validation-for="Name"></span>
+            <input type="text" class="form-control" asp-for="Name" placeholder="Your Name">
+            <label asp-for="Quote"><span>Your quote:</span></label>
+            <span asp-validation-for="Quote"></span>
+            <input type="text" class="form-control" asp-for="Quote" placeholder="Your Quote">
+        </div>
+            <button type="submit" class="btn btn-primary">Add my quote!</button>
+            <a href="/quotes" role="button" class="btn btn-success">Skip to quotes!</a>
+    </form>    
+</div>

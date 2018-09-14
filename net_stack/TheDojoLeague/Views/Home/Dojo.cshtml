@@ -1,0 +1,57 @@
+<div class='container-fluid'>
+    @{
+        if (ViewBag.Dojo.Description == null)
+        {
+            ViewBag.Dojo.Description = "N/A";
+        }
+    }
+    <h3><span class='dojo-info'>@ViewBag.Dojo.Name</span>!!!</h3>
+    <h4>Dojo Location - <span class='dojo-info'>@ViewBag.Dojo.Location</span></h4>
+    <h4>Information - <span class='dojo-info'>@ViewBag.Dojo.Description</span></h4>
+    <div class='content'>
+        <div>
+            <h3>Current Members</h3>
+            <table class='table table-striped'>
+                <thead class='thead-dark'>
+                    <th scope='col'>Ninja</th>
+                    <th scope='col'>Action</th>
+                </thead>
+                <tbody>
+                    @{
+                        foreach(NinjaModel ninja in ViewBag.Dojo.Ninjas)
+                        {
+                            <tr>
+                                <td>@ninja.Name</td>
+                                <td><a href='/Dojo/@ViewBag.Id/Banish/@ninja.Id'>Banish!</a></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <h3>Rogue Ninjas</h3>
+            <table class='table table-striped'>
+                <thead class='thead-dark'>
+                    <th scope='col'>Ninja</th>
+                    <th scope='col'>Action</th>
+                </thead>
+                <tbody>
+                    @{
+                        foreach(NinjaModel ninja in ViewBag.Rogue.Ninjas)
+                        {
+                            <tr>
+                                <td>@ninja.Name</td>
+                                <td><a href='/Dojo/@ViewBag.Id/Recruit/@ninja.Id'>Recruit!</a></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class='container-fluid'>
+    <a href='/'>root</a>
+</div>

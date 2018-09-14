@@ -1,0 +1,56 @@
+﻿<div class='container-fluid'>
+    <h2>Write a new Review:</h2>
+    @model ReviewModel
+    <form autocomplete="off" asp-action="Submit" asp-controller="Home" method="POST">
+        <div class="form-content">
+            <div>
+                <span asp-validation-for="ReviewerName"></span>
+                <div class="form-row form-group">
+                    <label asp-for="ReviewerName" class="col-sm-4 col-form-label">Reviewer Name:</label>
+                    <div class="col-md-5">
+                        <input type="text" class="form-control" asp-for="ReviewerName" placeholder="Reviewer Name">
+                    </div>
+                </div>
+                <span asp-validation-for="RestaurantName"></span>
+                <div class="form-row form-group">
+                    <label asp-for="RestaurantName" class="col-sm-4 col-form-label">Restaurant Name:</label>
+                    <div class="col-md-5">
+                        <input type="text" class="form-control" asp-for="RestaurantName" placeholder="Reviewer Name">
+                    </div>
+                </div>
+                <span asp-validation-for="Review"></span>
+                <div class="form-row form-group">
+                    <label asp-for="Review" class="col-sm-4 col-form-label">Review:</label>
+                    <div class="col-md-6">
+                        <textarea type="text" class="form-control" asp-for="Review" rows="3"></textarea>
+                    </div>
+                </div>
+                <span asp-validation-for="Date"></span>
+                <div class="form-row form-group">
+                    <label asp-for="Date" class="col-sm-4 col-form-label">Date of visit:</label>
+                    <div class="col-md-4">
+                        <input data-toggle="datepicker" type="text" class="form-control" asp-for="Date" placeholder="mm/dd/yyyy">
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+            <div>
+                <span asp-validation-for="Stars"></span>
+                <div class="form-row form-group">
+                    <label asp-for="Stars" class="col-sm-2 col-form-label">Stars:</label>
+                    <div class="col-md-3">
+                        <select asp-for="Stars" class="form-control">
+                            <option selected value=1>1</option>
+                            <option value=2>2</option>
+                            <option value=3>3</option>
+                            <option value=4>4</option>
+                            <option value=5>5</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

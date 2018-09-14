@@ -1,0 +1,9 @@
+﻿@model ViewModelFun.Models.Numbers
+
+<h1 class="text-center">Here are some numbers!</h1>
+@{
+    foreach(int num in Model.arr)
+    {
+        <p>@num</p>
+    }
+}

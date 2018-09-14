@@ -1,0 +1,29 @@
+﻿<h1>Lost in the Woods <span class='sub-header'>List of local hiking trails</span></h1>
+
+<table class='table table-striped'>
+    <thead class='thead-dark'>
+        <th scope='col'>Trail Name</th>
+        <th scope='col'>Trail Length</th>
+        <th scope='col'>Elevation Change</th>
+    </thead>
+    <tbody>
+        @{
+            foreach (TrailModel trail in ViewBag.Trails)
+            {
+                System.Console.WriteLine(trail.ElevationChange);
+                System.Console.WriteLine(trail.Longitude);
+                System.Console.WriteLine(trail.Latitude);
+                
+                <tr>
+                    <td><a href='trails/@trail.id'>@trail.Name</a></td>
+                    <td>@trail.Length miles</td>
+                    <td>@trail.ElevationChange feet</td>    
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+<div class='options'>
+    <div class='fill'></div>
+    <a href='NewTrail' class='btn btn-primary text-white' role='button'>Add a new Trail</a>
+</div>

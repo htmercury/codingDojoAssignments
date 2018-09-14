@@ -1,0 +1,19 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+div {
+    height: 86px;
+    width: 650px;
+    border: 1px solid gray;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+h1 {
+    font-weight: 400;
+}

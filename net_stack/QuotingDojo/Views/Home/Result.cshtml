@@ -1,0 +1,17 @@
+<div class='jumbotron'>
+    <h5>Quotes</h5>
+    <!-- <% for (let quote of quotes) { %>
+    <p class='quote'>"<%= quote.quote %>"</p>
+    <p class='author'> -<%= quote.name %> at <%= quote.createdAt %></p>
+    <% } %> -->
+    @{
+        foreach (Dictionary<string, object> dict in ViewBag.Results) {
+            DateTime obj = (DateTime)@dict["created_at"];
+            string time = obj.ToString("MMM d, yyyy h:mm tt");
+            <p class='quote'>"@dict["quote"]"</p>
+            <h5 class='author'> -@dict["name"] at @time</h5>
+            <br/>
+        }
+    }
+    <a href="/" role="button" class="btn btn-success">Go back!</a>
+</div>
