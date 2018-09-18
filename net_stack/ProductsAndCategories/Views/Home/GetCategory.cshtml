@@ -1,0 +1,33 @@
+<a href='/'>root</a>
+<h1>@ViewBag.Category.Name</h1>
+<div class='content'>
+    <div>
+        <h2>Products</h2>
+        <ul>
+            @{
+                foreach (CategoriesProductsModel entry in ViewBag.Category.Products)
+                {
+                    <li>@entry.Product.Name</li>
+                }
+            }
+        </ul>
+    </div>
+
+    <div>
+        <h2>Add Product</h2>
+        <form autocomplete="off" action='@ViewBag.Id/relate' method="POST">
+            <div class='form-group'>
+                <label for="productId"></label>
+                <select class="form-control" id="productId" name="productId">
+                    @{
+                        foreach (ProductModel product in ViewBag.Options)
+                        {
+                            <option value=@product.ProductId>@product.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+            <button type="submit" class='btn btn-primary'>Add</button>
+        </form>
+    </div>
+</div>

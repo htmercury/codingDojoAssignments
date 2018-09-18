@@ -20,7 +20,7 @@ namespace LoginAndRegistration.Migrations
 
             modelBuilder.Entity("LoginAndRegistration.Models.UserModel", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("UserId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Email")
@@ -35,7 +35,7 @@ namespace LoginAndRegistration.Migrations
                     b.Property<string>("Password")
                         .IsRequired();
 
-                    b.HasKey("Id");
+                    b.HasKey("UserId");
 
                     b.ToTable("Users");
                 });

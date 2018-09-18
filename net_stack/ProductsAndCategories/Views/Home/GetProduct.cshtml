@@ -1,0 +1,34 @@
+<a href='/'>root</a>
+<h1>@ViewBag.Product.Name</h1>
+<div class='content'>
+    <div>
+        <h2>Categories</h2>
+        <ul>
+            @{
+                foreach (CategoriesProductsModel entry in ViewBag.Product.Categories)
+                {
+                    <li>@entry.Category.Name</li>
+                }
+            }
+        </ul>
+    </div>
+
+    <div>
+        <h2>Add Category</h2>
+        <form autocomplete="off" action='@ViewBag.Id/relate' method="POST">
+            <div class='form-group'>
+                <label for="categoryId"></label>
+                <select class="form-control" id="categoryId" name="categoryId">
+                    @{
+                        foreach (CategoryModel category in ViewBag.Options)
+                        {
+                            System.Console.WriteLine($"modelID: {category.CategoryId}");
+                            <option value="@category.CategoryId">@category.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+            <button type="submit" class='btn btn-primary'>Add</button>
+        </form>
+    </div>
+</div>

@@ -15,3 +15,17 @@ services.AddDbContext<MyContext>(options => options.UseMySQL(Configuration["DBIn
         "Name": "MySQLconnect",
         "ConnectionString": "server=localhost;userid=root;password=root;port=3306;database=mydb;SslMode=None"
     }
+
+
+
+<ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.3" />
+    <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.3" />
+</ItemGroup>
+<ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.3" />
+</ItemGroup>
+
+dotnet ef migrations add name
+dotnet ef database update

@@ -1,0 +1,25 @@
+﻿<h1>URLs</h1>
+<ul>
+<li><a href='products/new'>Add a new product.</a></li>
+<li><a href='categories/new'>Add a new category.</a></li>
+</ul>
+
+<h1>Products</h1>
+<ol>
+    @{
+        foreach (ProductModel product in ViewBag.Products)
+        {
+            <li><a href='products/@product.ProductId'>@product.Name</a></li>
+        }
+    }
+</ol>
+
+<h1>Categorys</h1>
+<ol>
+    @{
+        foreach (CategoryModel category in ViewBag.Categories)
+        {
+            <li><a href='categories/@category.CategoryId'>@category.Name</a></li>
+        }
+    }
+</ol>

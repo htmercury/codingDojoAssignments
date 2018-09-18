@@ -1,6 +1,6 @@
 using System;
 
-namespace LoginAndRegistration.Models
+namespace BankAccounts.Models
 {
     public class ErrorViewModel
     {

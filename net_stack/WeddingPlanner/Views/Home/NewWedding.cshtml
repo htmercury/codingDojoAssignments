@@ -1,0 +1,27 @@
+<div class="dashboard">
+    <div class="options">
+        <h2>Plan Your Wedding</h2>
+        <div class="fill"></div>
+        <a href='/Dashboard'>Dashboard</a>
+        <a href='/Logout'>Log Out</a>
+    </div>
+    
+    @model WeddingModel
+    <form class="wedding-form" method="POST" autocomplete="off" asp-action="CreateWedding" asp-controller="Home">
+        <div class="form-group">
+            <span asp-validation-for="WedderOne"></span>
+            <label asp-for="WedderOne">Wedder One:</label>
+            <input type='text' asp-for='WedderOne' placeholder="Enter wedder one" class="form-control"> 
+            <span asp-validation-for="WedderTwo"></span>
+            <label asp-for="WedderTwo">Wedder Two:</label>
+            <input type='text' asp-for='WedderTwo' placeholder="Enter wedder two" class="form-control"> 
+            <span asp-validation-for="Date"></span>
+            <label asp-for="Date">Date:</label>
+            <input type='date' asp-for='Date' placeholder="Enter date" class="form-control"> 
+            <span asp-validation-for="Address"></span>
+            <label asp-for="Address">Wedding Address:</label>
+            <input type='text' asp-for='Address' placeholder="Enter wedding address" class="form-control"> 
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+</div>

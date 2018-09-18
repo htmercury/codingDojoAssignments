@@ -1,0 +1,54 @@
+<div class="dashboard">
+    <div class="options">
+        <h2 class="text-inline">Welcome to the Wedding Planner</h2>
+        <div class="fill"></div>
+        <a href='/Logout'>Log Out</a>
+    </div>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <th role="col">Wedding</th>
+            <th role="col">Date</th>
+            <th role="col">Guest</th>
+            <th role="col">Action</th>
+        </thead>
+        <tbody>
+        @{
+            foreach (WeddingModel wedding in ViewBag.Weddings)
+            {
+                <tr>
+                    @{
+                        <td><a href='/Wedding/@wedding.WeddingId'>@wedding.WedderOne & @wedding.WedderTwo</a></td>
+                        <td>@wedding.Date.ToString("MMMM dd, yyyy")</td>
+                        <td>@wedding.Guests.Count()</td>
+                        if (ViewBag.User.OwnedWeddings.Contains(wedding))
+                        {
+                            <td><a href='/delete/@wedding.WeddingId'>Delete</a></td>
+                        }
+                        else 
+                        {
+                            bool Found = false;
+                            foreach (UserWeddingModel uw in ViewBag.UserWeddings)
+                            {
+                                if (uw.WeddingId == wedding.WeddingId)
+                                {
+                                    Found = true;
+                                    <td><a href='/UnRSVP/@wedding.WeddingId'>Un-RSVP</a></td>
+                                }
+                            }
+                            if (!Found)
+                            {
+                                <td><a href='/RSVP/@wedding.WeddingId'>RSVP</a></td>
+                            }
+                        }
+                    }
+                </tr>
+            }
+        }                
+        </tbody>
+    </table>
+
+    <div class="options">
+        <div class="fill"></div>
+        <a href="/new" role="button" class="btn btn-primary text-white">Create</a>
+    </div>
+</div>

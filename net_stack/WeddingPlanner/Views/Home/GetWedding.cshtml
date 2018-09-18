@@ -1,0 +1,17 @@
+<div class="dashboard">
+    <div class="options">
+        <h2>@ViewBag.Wedding.WedderOne and @ViewBag.Wedding.WedderTwo's Wedding</h2>
+        <div class="fill"></div>
+        <a href='/Dashboard'>Dashboard</a>
+        <a href='/Logout'>Log Out</a>
+    </div>
+    <h5>Date: @ViewBag.Wedding.Date.ToString("MMMM dd, yyyy")</h5>
+
+    <h5>Guests:</h5>
+    <ul>
+        @foreach(UserWeddingModel entry in ViewBag.Wedding.Guests)
+        {
+            <p>@entry.User.FirstName</p>
+        }
+    </ul>
+</div>

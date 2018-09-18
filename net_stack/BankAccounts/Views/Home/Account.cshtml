@@ -1,0 +1,46 @@
+<div class='head'>
+    <h3>Welcome, @ViewBag.User.FirstName</h3>
+    <div class='fill'></div>
+    <h5>Current balance: <input disabled type="text" id="balance" class="form-control" placeholder='$@ViewBag.User.Balance.ToString("n2")'></h5>
+</div>
+<a href='/Logout'>Log Out</a>
+<form autocomplete="off" action='Transact' method="POST">
+    <div class="form-row align-items-center">
+        <div class="col-sm-2 my-1">
+            <h5>Deposit/Withdraw:</h5>
+        </div>
+        <div class="col-sm-2 my-1">
+            <input type="number" class="form-control" id="amount" name="amount" placeholder="Enter amount" step="0.01">
+        </div>
+        <div class="col-auto my-1">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </div>
+</form>
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <th scope="col">Amount</th>
+        <th scope="col">Date</th>
+    </thead>
+    <tbody>
+        @{
+            foreach(TransactionModel transaction in ViewBag.User.Transactions)
+            {
+                <tr>
+                    @{
+                        if (transaction.Amount < 0)
+                        {
+                            <td>- $@Math.Abs(transaction.Amount).ToString("n2")</td>
+                        }
+                        else
+                        {
+                            <td>$@transaction.Amount.ToString("n2")</td>
+                        }
+                    }
+                    <td>@transaction.Date.ToString("MMMM dd, yyyy")</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

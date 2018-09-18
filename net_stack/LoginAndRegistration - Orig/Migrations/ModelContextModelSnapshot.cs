@@ -10,10 +10,9 @@ using System;
 namespace LoginAndRegistration.Migrations
 {
     [DbContext(typeof(ModelContext))]
-    [Migration("20180913173543_init")]
-    partial class init
+    partial class ModelContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,7 +20,7 @@ namespace LoginAndRegistration.Migrations
 
             modelBuilder.Entity("LoginAndRegistration.Models.UserModel", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("UserId")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("Email")
@@ -36,7 +35,7 @@ namespace LoginAndRegistration.Migrations
                     b.Property<string>("Password")
                         .IsRequired();
 
-                    b.HasKey("Id");
+                    b.HasKey("UserId");
 
                     b.ToTable("Users");
                 });
