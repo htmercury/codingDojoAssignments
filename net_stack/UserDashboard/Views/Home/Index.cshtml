@@ -1,31 +1,31 @@
-﻿<div class='content'>
+﻿<div class='content container'>
     <div class='jumbotron'>
         @model AuthViewModel
         <form asp-action='Register' asp-controller='Home' method="POST" autocomplete=off>
             <h4>Register</h4>
-            <p class='error'>@TempData["FirstName"]</p>
+            <p class='error'>@ViewBag.FirstName</p>
             <label asp-for="RegForm.FirstName">First Name:</label>
-            <input type='text' asp-for='RegForm.FirstName' placeholder="Enter first name" class="form-control" value='@TempData["fname"]'> 
-            <p class='error'>@TempData["LastName"]</p>
+            <input type='text' asp-for='RegForm.FirstName' placeholder="Enter first name" class="form-control" value="@ViewBag.fname"> 
+            <p class='error'>@ViewBag.LastName</p>
             <label asp-for="RegForm.LastName">Last Name:</label>
-            <input type='text' asp-for='RegForm.LastName' placeholder="Enter last name" class="form-control" value='@TempData["lname"]'>
-            <p class='error'>@TempData["Email"]</p>
+            <input type='text' asp-for='RegForm.LastName' placeholder="Enter last name" class="form-control" value="@ViewBag.lname">
+            <p class='error'>@ViewBag.Email</p>
             <label asp-for="RegForm.Email">Email:</label>
-            <input type='text' asp-for='RegForm.Email' placeholder="Enter email" class="form-control" value='@TempData["emailAddress"]'>
+            <input type='text' asp-for='RegForm.Email' placeholder="Enter email" class="form-control" value="@ViewBag.emailAddress">
             <div class="form-group">
-                <p class='error'>@TempData["Password"]</p>
+                <p class='error'>@ViewBag.Password</p>
                 <label asp-for="RegForm.Password">Password</label>
                 <input type="password" class="form-control" asp-for="RegForm.Password" placeholder="Password">
                 <label asp-for="RegForm.ConfirmPassword">Confirm password</label>
                 <input type="password" class="form-control" asp-for="RegForm.ConfirmPassword" placeholder="Password">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Register</button>
         </form>
     </div>
     <div class='jumbotron'>
         <form asp-action='Login' asp-controller='Home' method="POST" autocomplete="off">
             <h4>Sign in</h4>
-            <p class='error'>@TempData["LoginError"]</p>
+            <p class='error'>@ViewBag.LoginError</p>
             <div class="form-group">
                 <label asp-for="LogForm.Email" value="@ViewBag.loginEmail">Email address</label>
                 <input type="text" class="form-control" asp-for="LogForm.Email" placeholder="Enter email">

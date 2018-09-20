@@ -1,0 +1,28 @@
+<div class='content container'>
+        <div class='jumbotron'>
+            @model AuthViewModel
+            <form asp-action='Create' asp-controller='Home' method="POST" autocomplete=off>
+                <h4>Add a new user</h4>
+                <p class='error'>@ViewBag.FirstName</p>
+                <label asp-for="RegForm.FirstName">First Name:</label>
+                <input type='text' asp-for='RegForm.FirstName' placeholder="Enter first name" class="form-control" value="@ViewBag.fname"> 
+                <p class='error'>@ViewBag.LastName</p>
+                <label asp-for="RegForm.LastName">Last Name:</label>
+                <input type='text' asp-for='RegForm.LastName' placeholder="Enter last name" class="form-control" value="@ViewBag.lname">
+                <p class='error'>@ViewBag.Email</p>
+                <label asp-for="RegForm.Email">Email:</label>
+                <input type='text' asp-for='RegForm.Email' placeholder="Enter email" class="form-control" value="@ViewBag.emailAddress">
+                <div class="form-group">
+                    <p class='error'>@ViewBag.Password</p>
+                    <label asp-for="RegForm.Password">Password</label>
+                    <input type="password" class="form-control" asp-for="RegForm.Password" placeholder="Password">
+                    <label asp-for="RegForm.ConfirmPassword">Confirm password</label>
+                    <input type="password" class="form-control" asp-for="RegForm.ConfirmPassword" placeholder="Password">
+                </div>
+                <button type="submit" class="btn btn-primary">Create</button>
+            </form>
+        </div>
+        <div class='dashboard-return'>
+            <a href='/Dashboard' role='button' class='btn btn-primary'>Return to Dashboard</a>
+        </div>
+    </div>

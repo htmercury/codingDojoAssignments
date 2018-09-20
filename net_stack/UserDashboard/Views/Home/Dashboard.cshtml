@@ -1,0 +1,53 @@
+<div class="container page">
+    <div class='options'>
+        @{
+            if (ViewBag.Admin) {
+                <h3>Manage Users</h3>
+                <div class='fill'></div>
+                <a href='/Users/New' class='btn btn-primary text-white' role='button'>Add new</a>
+            }
+            else {
+                <h3>All Users</h3>
+                <div class='fill'></div>
+            }
+        }
+    </div>
+    <table class='table table-striped'>
+        <thead class='thead-dark'>
+            <th scope='col'>ID</th>
+            <th scope='col'>Name</th>
+            <th scope='col'>Email</th>
+            <th scope='col'>Created At</th>
+            <th scope='col'>User Level</th>
+            @{
+                if (ViewBag.Admin) {
+                    <th scope='col'>Actions</th>
+                }
+            }
+        </thead>
+        <tbody>
+            @{
+                foreach (UserModel user in ViewBag.Users) {
+                    <tr>
+                        <td>@user.UserId</td>
+                        <td><a href='/Users/Show/@user.UserId'>@user.FirstName @user.LastName</a></td>
+                        <td>@user.Email</td>
+                        <td>@user.CreatedAt.ToString("MMMM dd, yyyy")</td>
+                        @{
+                            if (user.Admin) {
+                                <td>admin</td>
+                            }
+                            else {
+                                <td>normal</td>
+                            }
+                            if (ViewBag.Admin) {
+                                <td><a href='Users/Edit/@user.UserId'>edit</a> <a href='Users/Delete/@user.UserId'>delete</a></td>
+                            }
+                        }
+                        
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

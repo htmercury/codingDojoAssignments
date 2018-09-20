@@ -1,0 +1,61 @@
+<div class='container page'>
+    <h3>@ViewBag.User.FirstName @ViewBag.User.LastName</h3>
+    <h6><span class='show-label'>Registered at:</span> @ViewBag.User.CreatedAt.ToString("MMMM dd, yyyy")</h6>
+    <h6><span class='show-label'>User ID:</span> @ViewBag.User.UserId</h4>
+    <h6><span class='show-label'>Email address:</span> @ViewBag.User.Email</h4>
+    <h6><span class='show-label'>Description:</span> @ViewBag.User.Description</h4>
+    
+    @model MessageModel
+    <form asp-action='PostMessage' asp-route-profileId='@ViewBag.User.UserId' asp-controller='Home' method='POST'>
+        <div class="form-group">
+            <span asp-validation-for='Message'></span>
+            <h4 class='text-light'>Post a message</h4>
+            <textarea asp-for='Message' class="form-control" rows="3"></textarea>
+        </div>
+        <div class='submission'>
+            <div class='fill'></div>
+            <button type="submit" class="btn btn-primary">Post</button>
+        </div>
+    </form>
+    @{
+        foreach (MessageModel message in ViewBag.Messages) {
+            <div class='post'>
+                <div class='message_container'>
+                    <h5 class='poster'>@message.User.FirstName @message.User.LastName 
+                        - @message.UpdatedAt.ToString("MMMM dd, yyyy hh:mm tt")</h5>
+                    <div class='fill'></div>
+                    @{
+                        if (ViewBag.OwnerId == message.UserId) {
+                            <a class='btn btn-danger btn-sm' role='button' href='/Users/Message/Delete/@message.MessageId'>Delete Message</a>
+                        }
+                    }
+                </div>
+                <p class='message'>@message.Message</p>
+                @{
+                    foreach (CommentModel comment in message.Comments) {
+                        <div class='comment_container'>
+                            <p class='commenter'>@comment.User.FirstName @comment.User.LastName - @comment.UpdatedAt.ToString("MMMM dd, yyyy hh:mm tt")</p>
+                            <div class='fill'></div>
+                            @{
+                                if (ViewBag.OwnerId == comment.UserId) {
+                                    <a class='btn btn-danger btn-sm' role='button' href='/Users/Comment/Delete/@comment.CommentId'>Delete Comment</a>
+                                }
+                            }
+                        </div>
+                        <p class='comment'>@comment.Comment</p>
+                    }
+                }
+                <form class='comment_box' action='/Users/Show/Comment/@message.MessageId' method='POST'>
+                    <div class="form-group">
+                        <h4 class='text-light'>Post a comment</h4>
+                        <textarea name='Comment' class="form-control" rows="2"></textarea>
+                    </div>
+                    <div class='submission'>
+                        <div class='fill'></div>
+                        <button type="submit" class="btn btn-secondary">Post</button>
+                    </div>
+                </form>
+            </div>
+        }
+    }
+</div>

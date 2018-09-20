@@ -25,15 +25,8 @@ namespace LoginAndRegistration.Controllers {
             if (UserId != null) {
                 return RedirectToAction ("Result");
             }
-            ViewBag.FirstName = TempData["FirstName"];
-            ViewBag.LastName = TempData["LastName"];
-            ViewBag.Email = TempData["Email"];
-            ViewBag.Password = TempData["Password"];
-            ViewBag.Submission = TempData["Submission"];
-            ViewBag.LoginError = TempData["LoginError"];
-            ViewBag.fname = TempData["fname"];
-            ViewBag.lname = TempData["lname"];
-            ViewBag.emailAddress = TempData["emailAddress"];
+            ViewBag.Gate = "<a class='text-white' href='SignIn'>Sign in</a>";
+            ViewBag.Nav = "<li class='nav-item active'><a class='nav-link' href='/'>Home</a></li>";
             return View ();
         }
 
@@ -87,7 +80,7 @@ namespace LoginAndRegistration.Controllers {
             }
             string check = email == null ? null : email.ToLower ();
             UserModel Query = _context.Users.Where (user => user.Email.ToLower () == check).FirstOrDefault ();
-            if (Query != null) {
+            if (Query != null && password != null) {
                 PasswordHasher<UserModel> Hasher = new PasswordHasher<UserModel> ();
                 var result = Hasher.VerifyHashedPassword (Query, Query.Password, password);
                 if (result != 0) {
@@ -106,6 +99,8 @@ namespace LoginAndRegistration.Controllers {
             if (UserId == null) {
                 return RedirectToAction ("Index");
             }
+            ViewBag.Gate = "<a class='text-white' href='/Logout'>Log off</a>";
+            ViewBag.Nav = "<li class='nav-item active'><a class='nav-link' href='/Dashboard'>Dashboard</a></li><li class='nav-item active'><a class='nav-link' href='/Users/Edit'>Profile</a></li>";
             return View ();
         }
 

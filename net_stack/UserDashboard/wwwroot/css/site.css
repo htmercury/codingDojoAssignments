@@ -43,6 +43,7 @@ input {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    margin-top: 20px;
 }
 .content > div {
     min-width: 360px;
@@ -59,4 +60,62 @@ input {
 }
 h4 {
     text-align: center;
+}
+.panel_text {
+    height: 130px;
+}
+.page {
+    margin-top: 20px;
+}
+.options {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.fill {
+    flex-grow: 1;
+}
+.dashboard-return {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    height: 660px;
+}
+.show-label {
+    width: 130px;
+    display: inline-block;
+}
+.post {
+    margin: 25px 0;
+}
+
+.message {
+    padding-left: 20px;
+    color: black;
+    font-size: 18px;
+    display: inline-block;
+}
+
+.poster, .commenter {
+    margin-bottom: 2px;
+}
+
+.commenter {
+    margin-left: 40px;
+    font-size: 18px;
+}
+
+.comment_container, .message_container {
+    display: flex;
+    align-items: center;
+}
+
+.comment, .comment_box {
+    margin-left: 60px;
+}
+
+.submission {
+    display: flex;
 }
